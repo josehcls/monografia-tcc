@@ -1,10 +1,10 @@
 \section{Projeto de Software}
 
-A partir dos Requisitos Técnicos levantados, foi realizado o projeto de software, consistindo na definição de casos de uso a serem implementados 
-e na elaboração de diagramas para estabelecer em maior detalhe a organização e interações dos componentes do sistema. O Diagrama de Casos de Uso 
-ilustra os atores do sistema suas ações, o Diagrama Entidade Relacionamento define como as informações são organizadas em banco de dados, e o 
-Diagrama de Componentes especifica a arquitetura de software adotada. Ao final da apresentação e discussão desses tópicos, as a escolha de cada 
-ferramenta e tecnologia escolhida é justificada.
+A partir dos Requisitos Técnicos levantados, foi realizado o projeto de software. O projeto se iniciou com a definição de casos de uso a serem implementados, de forma a satisfazer os requisitos técnicos, em conjunto o diagrama de casos de uso definido pela UML foi elaborado para prover apresentação visual. Em seguida, as informações que devem ser armazenadas pelo sistema foram levantadas e a relação entre elas foi estabelecida, sendo representada no diagrama de entidade-relacionamento. O passo seguinte foi a definição da arquitetura de software do sistema.
+
+No projeto a arquitetura de microsserviços foi escolhida como padrão para o sistema. Essa arquitetura define padrões de modularização do sistema em componentes pequenos e altamente especializados, conferindo facilidades de manutenção e escalabilidade em contraste com a arquitetura de monólito. Em contrapartida, o sistema é mais complexo de se implementar e implantar, devido a separação dos módulos, contudo, considerando o desejo de continuar este projeto após a entrega e os padrões de mercado atuais a abordagem de microsserviços é considerada a mais adequada. 
+
+Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
 
 \subsection{Especificação dos Casos de Uso}
 
@@ -13,7 +13,7 @@ usuário e dispositivo. O usuário representa o utilizador humano do sistema a s
 O usuário se comunica com o sistema por duas interfaces, uma aplicação web, que se comunica diretamente com o sistema, e um aplicativo para smartphone, necessário para configurações iniciais do dispositivo. O dispositivo representa o sistema hardware de controle e monitoramento, também desenvolvido neste projeto. Em relação ao sistema de software, ele é tratado como um ator com suas devidas interações; seu projeto e especificações são discutidos na seção destinado ao projeto de hardware.
 
 Segue a especificação dos casos de uso em si, contendo a identificação de cada caso de uso, sua breve descrição, enumeração dos passos que o definem e 
-listagem dos requisitos técnicos relacionados ao caso de uso. Com caráter ilustrativo, o Diagrama de Casos de Uso da UML é apresentado na figura \ref{fig:usecases}.
+listagem dos requisitos técnicos relacionados ao caso de uso. Com caráter ilustrativo, o Diagrama de Casos de Uso da UML é apresentado na figura \ref{fig:diagrama_caso_de_usos}.
 
 \subsubsection*{UC - 1: Registro de Dispositivo} 
 
@@ -54,7 +54,7 @@ Descrição: fluxo de cadastro de lotes, perfis de controle e associação de lo
     \item Usuário seleciona qual dispositivo irá controlar a produção do lote
     \item Usuário clica em “Salvar”
     \item Sistema cadastra lote, perfil de controle (caso novo), associação de lote e perfil de controle, e associação de lote e dispositivo
-    \item )Sistema envia informações do lote para dispositivo selecionado
+    \item Sistema envia informações do lote para dispositivo selecionado
 \end{enumerate}
 Requisitos relacionados: SW-F-5 e SW-F-6.
 
@@ -87,11 +87,11 @@ Descrição: fluxo para visualização das informações gerais e de evolução 
 \end{enumerate}    
 Requisitos relacionados: SW-F-2, SW-F-3, SW-F-8, SW-F-11
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.45]{figuras/projeto/software/diagrama_casos_de_uso.png}
-    \caption{Diagrama de Casos de Uso da UML. Criado com a plataforma Visual Paradigm Online Diagrams Express Edition}
-    \label{fig:usecases}
+    \caption{Diagrama de Casos de Uso.}
+    \label{fig:diagrama_caso_de_usos}
 \end{figure}
 
 \subsection{Modelo de Entidade-Relacionamento}
@@ -106,21 +106,24 @@ os dados coletados em cada execução de uma receita; e o schema control, por fi
 seu funcionamento. A separação das entidades em domínios é importante na arquitetura de microsserviços para assegurar que cada serviço tenha 
 controle apenas às informações de sua competência. 
 
-A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:bancodados}, com destaque em cor para cada um 
+A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:diagrama_entidade_relacionamento}, com destaque em cor para cada um 
 dos schemas determinados.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.15]{figuras/projeto/software/banco_de_dados.png}
-    \caption{Diagrama de Entidade Relacionamento.}
-    \label{fig:bancodados}
+    \caption{Diagrama de Entidade-Relacionamento.}
+    \label{fig:diagrama_entidade_relacionamento}
 \end{figure}
 
 \subsection{Arquitetura de Software}
 
-A arquitetura de software do projeto foi estruturada tendo como base o trajeto da informação especificado nos casos de uso e os conceitos gerais de arquitetura de microsserviços. Dessa forma, foram definidos quatro camadas: Camada de Interface, contemplando as interfaces utilizadas diretamente pelos atores; Camada Intermediária, contendo proxy reverso isolando os microsserviços e um message broker para intermediar a comunicação entre dispositivos e sistema; Camada de Microsserviços, contendo todos os microsserviços; e Camada de Banco de Dados, com os serviços de armazenamento de dados. Em sequência, os componentes de cada camada são explicitados e descritos quanto a suas responsabilidades e detalhes de implementação. A arquitetura é representada visualmente pelo Diagrama de Componentes da Figura X3.
+A arquitetura de software do projeto foi estruturada tendo como base o fluxo da informação como especificado nos casos de uso e os conceitos de arquitetura de microsserviços. Dessa forma, foram definidas quatro camadas para organizar os sistemas a serem implementados: Camada de Interface, contemplando as interfaces utilizadas diretamente pelos atores; Camada Intermediária, contendo um API Gateway para isolar os microsserviços das interfaces e um message broker para intermediar a comunicação entre dispositivo e sistema; Camada de Negócio, contendo os microsserviços que exercem as regras de negócio do sistema; e Camada de Persistência, com os serviços de armazenamento de dados. Os componentes de cada camada são descritos em detalhes quanto a suas responsabilidades e detalhes de implementação em sequência. A arquitetura completa é representada visualmente pelo Diagrama de Componentes da figura \ref{fig:diagrama_componentes}.
 
-\subsubsection*{Camada de Interface}
+%% TODO: Diagrama complexo em apêndice
+
+\subsubsection{Camada de Interface}
+A Camada de Interface contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. 
 
 Aplicação Front End
     - Implementação: HTML + CSS + React.js
@@ -134,7 +137,7 @@ Dispositivo
     - Implementação: linguagem Arduino
     - Responsabilidades: monitoramento e controle do processo de fermentação
 
-\subsubsection*{Camada Intermediária}
+\subsubsection{Camada Intermediária}
 
     A camada intermediária acomoda um serviço de API Gateway, que age como um proxy reverso que roteia as requisições externas ao sistema para quais microsserviços sejam necessários e retorna ao cliente; e um serviço de Message Broker que controla o fluxo de mensagens que são transmitidas entre o dispositivo e o sistema.
     
@@ -146,9 +149,21 @@ Dispositivo
         - Implementação: Mosquitto (Protocolo MQTT)
         - Responsabilidades: Receber e disponibilizar mensagens em tópicos
     
-\subsubsection*{Camada de Microsserviços}
+\subsubsection{Camada de Negócio}
     
-\subsection{Tecnologias escolhidas}
+\subsubsection{Camada de Persistência}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.50, angle=270]{figuras/projeto/software/diagrama_componentes.png}
+    \caption{Diagrama de Componentes.}
+    \label{fig:diagrama_componentes}
+\end{figure}
+
+\subsection{Definição de Tecnologias}
+
+\subsection{Projeto de Implantação}
 
 \subsection{Protótipos das Interfaces}
+%% TODO: Apêndices
 
