@@ -123,31 +123,21 @@ A arquitetura de software do projeto foi estruturada tendo como base o fluxo da 
 %% TODO: Diagrama complexo em apêndice
 
 \subsubsection{Camada de Interface}
-A Camada de Interface contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. 
+A Camada de Interface contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. Sua função, portanto, reside na interação com os atores e comunicação de suas ações para a próxima camada, a Camada Intermediária. São três componentes de interface que compõe essa camada: Aplicação Front-end, Aplicação Mobile e o Software Embarcado no dispositivo. 
 
-Aplicação Front End
-    - Implementação: HTML + CSS + React.js
-    - Responsabilidades: disponibilizar interfaces com o usuário para gerenciamento e visualização de suas informações
+A Aplicação Front-end é executada pelo navegador web do usuário do sistema, e permite que ele realize o cadastro e gerenciamento de todas as informações referentes ao sistema, como receitas, perfis de controle e lotes, ela também permite que o usuário visualize os dados gerados pelo dispositivo em formato de gráficos e tabelas. Essa aplicação contém o componente gráfico das telas que o usuário utilizará e algumas regras de validação simples, como campos obrigatórios de cadastro. As ações do usuário são traduzidas em requisições HTTP que são enviadas para o Serviço de API Gateway, na próxima camada. 
 
-Aplicativo em SmartPhone
-    - Implementação: aplicativo em Java para Android
-    - Responsabilidades: envio de configurações iniciais ao dispositivo por bluetooth e registro do dispositivo no sistema
+A Aplicação Mobile foi a solução encontrada para intermediar a comunicação entre usuário e dispositivo, suas principais funções são: enviar as informações necessárias para conexão à rede Wi-Fi do usuário, que é realizado pela tecnologia de bluetooth, e informar o sistema que aquele dispositivo foi ativado por determinado usuário. Após essa configuração, o usuário poderá associar um lote de uma receita para o dispositivo monitorar e controlar, e o dispositivo deve estar pronto para se comunicar com o sistema por meio de mensagens.
 
-Dispositivo
-    - Implementação: linguagem Arduino
-    - Responsabilidades: monitoramento e controle do processo de fermentação
+O Software Embarcado no dispositivo, além das funcionalidades de monitoramento e controle, que são detalhadas nas seções de Modelagem de Controle e Projeto de Hardware, deve ser capaz de se comunicar via tecnologia bluetooth com a Aplicação Mobile, e enviar e receber mensagens via protocolo MQTT com o Message Broker da Camada Intermediária. O dispositivo deve enviar mensagens com os dados que estão sendo coletados durante a fermentação, como temperatura, densidade relativa e pH, e receber informações sobre um novo lote que foi alocado para ele realizar o controle.
 
 \subsubsection{Camada Intermediária}
 
-    A camada intermediária acomoda um serviço de API Gateway, que age como um proxy reverso que roteia as requisições externas ao sistema para quais microsserviços sejam necessários e retorna ao cliente; e um serviço de Message Broker que controla o fluxo de mensagens que são transmitidas entre o dispositivo e o sistema.
-    
-    API Gateway
-        - Implementação: aplicação flask (Python), servido com Gunicorn e Nginx
-        - Responsabilidades: Centralizar as requisições ao sistema e traduzi-las em requisições ao microsserviços necessários para o completar a ação solicitada
-    
-    Message Broker
-        - Implementação: Mosquitto (Protocolo MQTT)
-        - Responsabilidades: Receber e disponibilizar mensagens em tópicos
+Toda a comunicação entre os atores e o sistema é realizada por mediação da Camada Intermediária. O tráfego pode ocorrer pelos protocolos HTTP ou MQTT. O fluxo por HTTP é mediado pelo Serviço de API Gateway, que roteia as requisições externas para os devidos microsserviços, enquanto que o fluxo MQTT, composto por mensagens, é controlado pelo Message Broker, que organiza as mensagens nos fluxos dispositivo para sistema e sistema para dispositivo.
+
+O Serviço de API Gateway funciona como um serviço de proxy reverso que, além centralizar as solicitações do usuário, consolida o resultado de cada microsserviço necessário para atender uma demanda. Apesar de ser um serviço muito simples, ele é importante por questões de segurança, uma vez que apenas um endereço fica exposto externamente e a autenticação externa é centralizada nele, e também por questões de escala futura, sendo mais fácil implantar um balanceador de carga ou sistema de fila de processamento com essa separação de serviços, caso seja necessário no futuro.
+
+O Message Broker é simplesmente um corretor de mensagens, que opera sobre o protocolo MQTT, e é responsável pelo recebimento, entrega e armazenamento das mensagens que trafegam no sistema. O protocolo MQTT foi escolhido por ser extremamente leve e desenvolvido especialmente para o uso em Internet das Coisas.
     
 \subsubsection{Camada de Negócio}
     
