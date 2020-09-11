@@ -1,0 +1,124 @@
+\section{Projeto de Software}
+
+A partir dos Requisitos Técnicos levantados, foi realizado o projeto de software, consistindo na definição de casos de uso a serem implementados 
+e na elaboração de diagramas para estabelecer em maior detalhe a organização e interações dos componentes do sistema. O Diagrama de Casos de Uso 
+ilustra os atores do sistema suas ações, o Diagrama Entidade Relacionamento define como as informações são organizadas em banco de dados, e o 
+Diagrama de Componentes especifica a arquitetura de software adotada. Ao final da apresentação e discussão desses tópicos, as a escolha de cada 
+ferramenta e tecnologia escolhida é justificada.
+
+\subsection{Especificação dos Casos de Uso}
+
+Na definição dos casos de uso do projeto foram definidos dois atores que interagem com o sistema de software a ser desenvolvido, identificados como 
+usuário e dispositivo. O usuário representa o utilizador humano do sistema a ser desenvolvido, responsável por todas as interações humanas necessárias. 
+O usuário se comunica com o sistema por duas interfaces, uma aplicação web, que se comunica diretamente com o sistema, e um aplicativo para smartphone, necessário para configurações iniciais do dispositivo. O dispositivo representa o sistema hardware de controle e monitoramento, também desenvolvido neste projeto. Em relação ao sistema de software, ele é tratado como um ator com suas devidas interações; seu projeto e especificações são discutidos na seção destinado ao projeto de hardware.
+
+Segue a especificação dos casos de uso em si, contendo a identificação de cada caso de uso, sua breve descrição, enumeração dos passos que o definem e 
+listagem dos requisitos técnicos relacionados ao caso de uso. Com caráter ilustrativo, o Diagrama de Casos de Uso da UML é apresentado na figura \ref{fig:usecases}.
+
+\subsubsection*{UC - 1: Registro de Dispositivo} 
+
+Descrição: ao obter um novo dispositivo, o usuário deve configurar seu acesso à rede Wi-Fi e registrá-lo, de modo que o sistema reconheça que aquele 
+dispositivo pertence ao usuário.
+\begin{enumerate}
+    \item Usuário acessa aplicativo em seu smartphone
+    \item Sistema autentica acesso do usuário
+    \item Aplicativo se conecta ao dispositivo
+    \item Usuário informa configurações da rede Wi-Fi
+    \item Aplicativo envia informações da rede para dispositivo
+    \item Dispositivo se conecta na rede e se prepara para receber mensagens do sistema
+    \item Aplicativo envia informações do dispositivo para o sistema
+    \item Sistema cadastra informações do dispositivo e usuário
+\end{enumerate}
+Requisito relacionado: SW-F-12
+
+\subsubsection*{UC - 2: Cadastro de Receitas}
+Descrição: fluxo de cadastro de receitas.
+\begin{enumerate}
+    \item Usuário acessa tela de listagem de receitas
+    \item Sistema exibe todas as receitas referentes ao usuário
+    \item Usuário seleciona opção “Criar Receita” e acessa tela de cadastro de receita
+    \item Usuário informa nome, estilo e observações da receita e clica em “Salvar”
+    \item Sistema cadastra a receita no banco de dados
+\end{enumerate}
+Requisito relacionado: SW-F-4
+
+\subsubsection*{UC - 3: Cadastro de Lotes}
+Descrição: fluxo de cadastro de lotes, perfis de controle e associação de lote a um dispositivo.
+\begin{enumerate}
+    \item Usuário acessa tela de listagens de receitas
+    \item Sistema exibe todas as receitas referentes ao usuário
+    \item Usuário escolhe uma receita e seleciona a opção “Criar Lote”, e acessa a tela de cadastro de lote
+    \item Sistema carrega listagem de perfis de controle já cadastrados e dispositivos do usuário
+    \item Usuário informa identificação e observações do lote
+    \item Usuário escolhe um perfil de controle já existente ou cria um novo perfil, informando uma identificação e cada um dos passos de controle (instante e valor alvo de temperatura)
+    \item Usuário seleciona qual dispositivo irá controlar a produção do lote
+    \item Usuário clica em “Salvar”
+    \item Sistema cadastra lote, perfil de controle (caso novo), associação de lote e perfil de controle, e associação de lote e dispositivo
+    \item )Sistema envia informações do lote para dispositivo selecionado
+\end{enumerate}
+Requisitos relacionados: SW-F-5 e SW-F-6.
+
+\subsubsection*{UC - 4: Envio das informações do Lote para Dispositivo}
+Descrição: fluxo de envio das informações do lote para o dispositivo associado ao controle daquele lote.
+\begin{enumerate}
+    \item Dispositivo recebe informações do lote que foi associado por tópico de mensagens
+    \item Dispositivo salva informações localmente
+    \item Quando pronto, dispositivo inicia rotina de monitoramento e controle
+\end{enumerate}    
+Requisito relacionado: HW-F-5
+
+\subsubsection*{UC - 5: Envio das informações do Dispositivo para o Sistema}
+Descrição: fluxo de envio das informações obtidas pelo monitoramento do processo pelo dispositivo para o sistema.
+\begin{enumerate}
+    \item Dispositivo envia dados coletados para o sistema
+    \item Sistema processa dados e salva informações no banco de dados
+\end{enumerate}    
+Requisitos relacionados: HW-F-6, SW-F-9
+
+\subsubsection*{UC - 6: Visualização das Informações dos Lotes}
+Descrição: fluxo para visualização das informações gerais e de evolução dos lotes correntes e passados
+\begin{enumerate}
+    \item Usuário acessa tela de listagem dos lotes
+    \item Sistema exibe todas os lotes referentes ao usuário
+    \item Usuário escolhe um lote e seleciona a opção “Ver Informações”, acessando a tela de informações do lote
+    \item Sistema exibe informações gerais sobre o lote, como identificação, receita, observações, status, data de início, data de término, densidades relativas inicial e final/atual, estimativa de teor alcoólico, pH final/atual, temperatura final/atual.
+    \item Sistema exibe um gráfico com as variáveis monitoradas em relação ao tempo
+    \item Caso usuário clique em “Baixar Dados”, sistema efetua o download dos dados do gráfico em arquivo de texto
+\end{enumerate}    
+Requisitos relacionados: SW-F-2, SW-F-3, SW-F-8, SW-F-11
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figuras/projeto/software/diagrama_casos_de_uso.png}
+    \caption{Diagrama de Casos de Uso da UML. Criado com a plataforma Visual Paradigm Online Diagrams Express Edition}
+    \label{fig:usecases}
+\end{figure}
+
+\subsection{Modelo de Entidade-Relacionamento}
+
+O Modelo Entidade Relacionamento descreve como as informações são organizada no sistema e como o banco de dados do sistema é estruturado. 
+Cada entidade no modelo representa um tipo de informação que é produzida e consumida pelo sistema, na execução dos casos de uso. 
+
+Todas as informações são armazenadas em um banco de dados relacional, dividido em schemas que atuam como partições de dados em diferentes domínios. 
+Foram definidos três domínios, traduzidos em schemas no banco de dados, para os dados: user, recipe e control. O schema user contém as informações 
+referentes aos usuários e dispositivos do sistema; o domínio recipe contempla as entidades relacionadas às receitas e lotes de produção, assim como 
+os dados coletados em cada execução de uma receita; e o schema control, por fim, os perfis de controle que são seguidos pelo dispositivo durante 
+seu funcionamento. A separação das entidades em domínios é importante na arquitetura de microsserviços para assegurar que cada serviço tenha 
+controle apenas às informações de sua competência. 
+
+A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:bancodados}, com destaque em cor para cada um 
+dos schemas determinados.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{figuras/projeto/software/banco_de_dados.png}
+    \caption{Diagrama de Entidade Relacionamento.}
+    \label{fig:bancodados}
+\end{figure}
+
+\subsection{Arquitetura de Software}
+
+\subsection{Tecnologias escolhidas}
+
+\subsection{Protótipos das Interfaces}
+

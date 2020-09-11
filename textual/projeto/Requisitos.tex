@@ -1,0 +1,69 @@
+\section{Especificação de Requisitos Técnicos}
+
+O protótipo deve ser capaz de monitorar e controlar o processo de fermentação de cervejas, seguindo as configurações de receita definidas pelo usuário. 
+Todas as informações coletadas devem ser disponibilizadas ao usuário com a finalidade de possibilitar maior entendimento e reprodutibilidade 
+do processo. O projeto foi dividido em dois sistemas: um Hardware, encarregado das medições e controle, e um Software, responsável por exibir informações e estabelecer uma interface com o usuário. A partir dessas premissas, foram determinados os seguintes requisitos para cada um dos sistemas.
+
+\subsection{Sistema Hardware}
+
+\subsubsection{Requisitos funcionais de Hardware}
+
+HW-F-1) O sistema deve monitorar a temperatura (entre 0 e 100 °C), com precisão de 0,5 °C e intervalo de 1 minuto.
+
+HW-F-2) O sistema deve monitorar o pH em intervalo de 1 minuto.
+
+HW-F-3) O sistema deve monitorar a densidade relativa (entre 1,000 e 1,150), com precisão de 0,001 em relação à água a 20°C e intervalo de 1 minuto.
+
+HW-F-4) O sistema deve controlar a temperatura de até 50 Litros de mosto em fermentação, com desvio máximo de 0,5°C em relação ao valor definido pelo usuário e diferença máxima de 10°C em relação ao ambiente.
+
+HW-F-5) O sistema deve seguir o perfil de controle (temperatura x tempo) definido pelo usuário no Software.
+
+HW-F-6) Os dados monitorados devem ser enviados para o Software a cada 5 minutos por meio de rede sem fio.
+
+\subsubsection{Requisitos não funcionais de Hardware}
+
+HW-NF-1) O sistema deve ser acoplável a fermentadores de até 50 Litros disponíveis no mercado.
+
+HW-NF-2) Em caso de perda de conexão com o Software, o sistema deve tentar enviar os dados ainda não enviados a cada ciclo de envio.
+
+HW-NF-3) Caso o sistema tenha uma oscilação no fornecimento de energia, ele deve ser capaz de voltar ao funcionamento normal.
+
+HW-NF-4) Os dados monitorados devem ser armazenados temporariamente, por no mínimo 15 dias, no Hardware.
+
+\subsection{Sistema Software}
+
+\subsubsection{Requisitos funcionais de Software}
+
+SW-F-1) O sistema deve fornecer acesso ao usuário após identificação com usuário e senha
+
+SW-F-2) O sistema deve fornecer as informações instantâneas das fermentações em progresso.
+
+SW-F-3) O sistema deve permitir acesso às informações históricas de fermentações já realizadas.
+
+SW-F-4) O sistema deve permitir o cadastro de receitas. Uma receita é definida por: identificação, nome, estilo e campo livre para observações. O campo livre pode evoluir para um cadastro padronizado dos ingredientes e processos realizados.
+
+SW-F-5) O sistema deve permitir o cadastro de lotes. Um lote é definido por: identificação, receita utilizada, instante de início da fermentação, instante de fim da fermentação, variáveis personalizadas, perfil de controle e observação.
+
+SW-F-6) O sistema deve permitir o cadastro de perfis de controle. Um perfil de controle é definido por: identificação, nome e temperatura alvo, instante (em relação ao início da fermentação).
+
+SW-F-7) O sistema deve permitir o cadastro de variáveis personalizadas. Uma variável personalizada é definida por: identificador, lote correspondente, chave, valor e instante (em relação ao início da fermentação).
+
+SW-F-8) O sistema deve disponibilizar, para cada lote um gráfico com a evolução de cada variável monitorada ao longo do tempo de fermentação.
+
+SW-F-9) Os dados recebidos pelo Hardware devem ser salvos em banco de dados
+
+SW-F-10) Em caso de perda de conexão com o Hardware, o usuário deve ser notificado por e-mail.
+
+SW-F-11) O sistema deve permitir que o usuário realize o download de seus dados em formato de planilha.
+
+SW-F-12) O sistema deve permitir que o usuário registre seus dispositivos.
+
+
+\subsubsection{Requisitos não funcionais de Software}
+
+SW-NF-1) As informações de cada usuário são, por padrão, particulares de cada usuário e devem seguir padrões de segurança.
+
+SW-NF-2) As informações instantâneas devem estar disponíveis em até 1 minuto após o recebimento dos dados pelo HW.
+
+SW-NF-3) O sistema deve ser desenvolvido na forma de Web-App, e ser responsivo a dispositivos mobile e computadores.
+
