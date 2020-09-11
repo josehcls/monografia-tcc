@@ -89,7 +89,7 @@ Requisitos relacionados: SW-F-2, SW-F-3, SW-F-8, SW-F-11
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{figuras/projeto/software/diagrama_casos_de_uso.png}
+    \includegraphics[scale=0.45]{figuras/projeto/software/diagrama_casos_de_uso.png}
     \caption{Diagrama de Casos de Uso da UML. Criado com a plataforma Visual Paradigm Online Diagrams Express Edition}
     \label{fig:usecases}
 \end{figure}
@@ -118,6 +118,36 @@ dos schemas determinados.
 
 \subsection{Arquitetura de Software}
 
+A arquitetura de software do projeto foi estruturada tendo como base o trajeto da informação especificado nos casos de uso e os conceitos gerais de arquitetura de microsserviços. Dessa forma, foram definidos quatro camadas: Camada de Interface, contemplando as interfaces utilizadas diretamente pelos atores; Camada Intermediária, contendo proxy reverso isolando os microsserviços e um message broker para intermediar a comunicação entre dispositivos e sistema; Camada de Microsserviços, contendo todos os microsserviços; e Camada de Banco de Dados, com os serviços de armazenamento de dados. Em sequência, os componentes de cada camada são explicitados e descritos quanto a suas responsabilidades e detalhes de implementação. A arquitetura é representada visualmente pelo Diagrama de Componentes da Figura X3.
+
+\subsubsection*{Camada de Interface}
+
+Aplicação Front End
+    - Implementação: HTML + CSS + React.js
+    - Responsabilidades: disponibilizar interfaces com o usuário para gerenciamento e visualização de suas informações
+
+Aplicativo em SmartPhone
+    - Implementação: aplicativo em Java para Android
+    - Responsabilidades: envio de configurações iniciais ao dispositivo por bluetooth e registro do dispositivo no sistema
+
+Dispositivo
+    - Implementação: linguagem Arduino
+    - Responsabilidades: monitoramento e controle do processo de fermentação
+
+\subsubsection*{Camada Intermediária}
+
+    A camada intermediária acomoda um serviço de API Gateway, que age como um proxy reverso que roteia as requisições externas ao sistema para quais microsserviços sejam necessários e retorna ao cliente; e um serviço de Message Broker que controla o fluxo de mensagens que são transmitidas entre o dispositivo e o sistema.
+    
+    API Gateway
+        - Implementação: aplicação flask (Python), servido com Gunicorn e Nginx
+        - Responsabilidades: Centralizar as requisições ao sistema e traduzi-las em requisições ao microsserviços necessários para o completar a ação solicitada
+    
+    Message Broker
+        - Implementação: Mosquitto (Protocolo MQTT)
+        - Responsabilidades: Receber e disponibilizar mensagens em tópicos
+    
+\subsubsection*{Camada de Microsserviços}
+    
 \subsection{Tecnologias escolhidas}
 
 \subsection{Protótipos das Interfaces}
