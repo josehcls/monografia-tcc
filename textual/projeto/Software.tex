@@ -110,7 +110,6 @@ controle apenas às informações de sua competência.
 
 A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:diagrama_entidade_relacionamento}, com destaque em cor para cada um dos schemas determinados.
 
-
 \subsection{Arquitetura de Software}
 
 A arquitetura de software do projeto foi estruturada tendo como base o fluxo da informação como especificado nos casos de uso e os conceitos de arquitetura de microsserviços. Dessa forma, foram definidas quatro camadas para organizar os sistemas a serem implementados: Camada de Interface, contemplando as interfaces utilizadas diretamente pelos atores; Camada Intermediária, contendo um API Gateway para isolar os microsserviços das interfaces e um message broker para intermediar a comunicação entre dispositivo e sistema; Camada de Negócio, contendo os microsserviços que exercem as regras de negócio do sistema; e Camada de Persistência, com os serviços de armazenamento de dados. Os componentes de cada camada são descritos em detalhes quanto a suas responsabilidades e detalhes de implementação em sequência. A arquitetura completa é representada visualmente pelo Diagrama de Componentes da figura \ref{fig:diagrama_componentes}.
@@ -203,6 +202,14 @@ A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os servi
 \end{figure}
 
 \subsection{Definição de Tecnologias}
+
+As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação, familiaridade dos autores com ela e facilidade de uso. Dessa forma, foi determinada a utilização da linguagem de programação Python para implementar os microsserviços e as lógicas necessárias no API Gateway. Utilizando o Python, é possível prover de forma simples e com poucos recursos uma API REST utilizando o framework Flask e sendo executado com o servidor Gunicorn. A segurança da aplicação segue padrão de mercado OAuth 2.0 com utilização da biblioteca oauthlib.
+
+A interface da Aplicação Web utiliza a biblioteca React do JavaScript, utilizando também a biblioteca chart.js para construção de gráficos. O Aplicativo Mobile é desenvolvido em Java, para utilização em smartphones Android. O banco de dados relacional definido é o PostgreSQL. 
+
+Com finalidade de reduzir custos em primeiro momento e antecipando uma necessidade de escalabilidade ao sistema, a tecnologia de Kubernetes é empregada para preparar e instanciar cada componente em um contâiner virtual, possibilitando a organização e controle de diversos componentes em uma mesma máquina virtual.
+
+% TODO: Melhorar...
 
 \subsection{Projeto de Implantação}
 
