@@ -6,6 +6,8 @@ No projeto a arquitetura de microsserviços foi escolhida como padrão para o si
 
 Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
 
+Adicionalmente, foram desenhados protótipos das interfaces que o usuário tem contato, e estão disponibilizadas no Apêndice \ref{appendice:prototipos}
+
 \subsection{Especificação dos Casos de Uso}
 
 Na definição dos casos de uso do projeto foram definidos dois atores que interagem com o sistema de software a ser desenvolvido, identificados como 
@@ -106,24 +108,22 @@ os dados coletados em cada execução de uma receita; e o schema control, por fi
 seu funcionamento. A separação das entidades em domínios é importante na arquitetura de microsserviços para assegurar que cada serviço tenha 
 controle apenas às informações de sua competência. 
 
-A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:diagrama_entidade_relacionamento}, com destaque em cor para cada um 
-dos schemas determinados.
+A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama Entidade Relacionamento da figura \ref{fig:diagrama_entidade_relacionamento}, com destaque em cor para cada um dos schemas determinados.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.15]{figuras/projeto/software/banco_de_dados.png}
-    \caption{Diagrama de Entidade-Relacionamento.}
-    \label{fig:diagrama_entidade_relacionamento}
-\end{figure}
 
 \subsection{Arquitetura de Software}
 
 A arquitetura de software do projeto foi estruturada tendo como base o fluxo da informação como especificado nos casos de uso e os conceitos de arquitetura de microsserviços. Dessa forma, foram definidas quatro camadas para organizar os sistemas a serem implementados: Camada de Interface, contemplando as interfaces utilizadas diretamente pelos atores; Camada Intermediária, contendo um API Gateway para isolar os microsserviços das interfaces e um message broker para intermediar a comunicação entre dispositivo e sistema; Camada de Negócio, contendo os microsserviços que exercem as regras de negócio do sistema; e Camada de Persistência, com os serviços de armazenamento de dados. Os componentes de cada camada são descritos em detalhes quanto a suas responsabilidades e detalhes de implementação em sequência. A arquitetura completa é representada visualmente pelo Diagrama de Componentes da figura \ref{fig:diagrama_componentes}.
 
-%% TODO: Diagrama complexo em apêndice
-
 \subsubsection{Camada de Interface}
-A Camada de Interface contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. Sua função, portanto, reside na interação com os atores e comunicação de suas ações para a próxima camada, a Camada Intermediária. São três componentes de interface que compõe essa camada: Aplicação Front-end, Aplicação Mobile e o Software Embarcado no dispositivo. 
+A Camada de Interface (figura \ref{fig:camada_interface}) contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. Sua função, portanto, reside na interação com os atores e comunicação de suas ações para a próxima camada, a Camada Intermediária. São três componentes de interface que compõe essa camada: Aplicação Front-end, Aplicação Mobile e o Software Embarcado no dispositivo. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_interface.PNG}
+    \caption{Camada de Interface.}
+    \label{fig:camada_interface}
+\end{figure}
 
 A Aplicação Front-end é executada pelo navegador web do usuário do sistema, e permite que ele realize o cadastro e gerenciamento de todas as informações referentes ao sistema, como receitas, perfis de controle e lotes, ela também permite que o usuário visualize os dados gerados pelo dispositivo em formato de gráficos e tabelas. Essa aplicação contém o componente gráfico das telas que o usuário utilizará e algumas regras de validação simples, como campos obrigatórios de cadastro. As ações do usuário são traduzidas em requisições HTTP que são enviadas para o Serviço de API Gateway, na próxima camada. 
 
@@ -133,15 +133,67 @@ O Software Embarcado no dispositivo, além das funcionalidades de monitoramento 
 
 \subsubsection{Camada Intermediária}
 
-Toda a comunicação entre os atores e o sistema é realizada por mediação da Camada Intermediária. O tráfego pode ocorrer pelos protocolos HTTP ou MQTT. O fluxo por HTTP é mediado pelo Serviço de API Gateway, que roteia as requisições externas para os devidos microsserviços, enquanto que o fluxo MQTT, composto por mensagens, é controlado pelo Message Broker, que organiza as mensagens nos fluxos dispositivo para sistema e sistema para dispositivo.
+Toda a comunicação entre os atores e o sistema é realizada por mediação da Camada Intermediária (figura \ref{fig:camada_intermediaria}). O tráfego pode ocorrer pelos protocolos HTTP ou MQTT. O fluxo por HTTP é mediado pelo Serviço de API Gateway, que roteia as requisições externas para os devidos microsserviços, enquanto que o fluxo MQTT, composto por mensagens, é controlado pelo Message Broker, que organiza as mensagens nos fluxos dispositivo para sistema e sistema para dispositivo.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_intermediaria.PNG}
+    \caption{Camada Intermediária.}
+    \label{fig:camada_intermediaria}
+\end{figure}
 
 O Serviço de API Gateway funciona como um serviço de proxy reverso que, além centralizar as solicitações do usuário, consolida o resultado de cada microsserviço necessário para atender uma demanda. Apesar de ser um serviço muito simples, ele é importante por questões de segurança, uma vez que apenas um endereço fica exposto externamente e a autenticação externa é centralizada nele, e também por questões de escala futura, sendo mais fácil implantar um balanceador de carga ou sistema de fila de processamento com essa separação de serviços, caso seja necessário no futuro.
 
 O Message Broker é simplesmente um corretor de mensagens, que opera sobre o protocolo MQTT, e é responsável pelo recebimento, entrega e armazenamento das mensagens que trafegam no sistema. O protocolo MQTT foi escolhido por ser extremamente leve e desenvolvido especialmente para o uso em Internet das Coisas.
     
 \subsubsection{Camada de Negócio}
+
+Os microsserviços do sistema, que aplicam as regras de negócios, estão presentes na Camada de Negócio. Os componentes dessa camada são responsáveis pela validação de consistência das informações, interação com o banco de dados na Camada de Persistência através da interface ODBC, e processamento dos dados coletados pelo dispositivo. Cada microsserviço que compõe essa camada é especializado e responsável por uma quantidade restrita de entidades, prezando-se pelo baixo acoplamento do sistema. Simplificando a implantação do sistema, alguns serviços foram agrupados em um mesmo servidor, mediante sua afinidade em relação às informações em que se especializa.
+
+O Servidor de Registro (figura \ref{fig:camada_negocios_registro}) comporta os Serviços de Usuários e de Dispositivos, que são responsáveis pelo cadastro, recuperação, atualização e deleção  (CRUD, em inglês) dos registros de usuários e registros, respectivamente. Além disso, o Serviço de Usuários controla a associação entre um usuário e seus dispositivos.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios_registro.PNG}
+    \caption{Camada de Negócio - Servidor de Registros.}
+    \label{fig:camada_negocios_registro}
+\end{figure}
+
+Os Serviços de Controle, Receitas e Lotes também exercem a responsabilidade sobre o CRUD de perfis de controle, receitas e lotes, respectivamente, e foram agrupados no Servidor de Receitas (figura \ref{fig:camada_negocios_receita}). O Serviço de Lotes também realiza a associação de um lote com o dispositivo e envia todas as informações necessárias para o controle do lote da receita para o dispositivo que foi associado, essa comunicação é realizada por meio de mensagens sob o protocolo MQTT, que serão consumidas pelo dispositivo conectado à Internet.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios_receita.PNG}
+    \caption{Camada de Negócio - Servidor de Receitas.}
+    \label{fig:camada_negocios_receita}
+\end{figure}
+
+A figura \ref{fig:camada_negocios} ilustra os demais serviços da Camada de Negócios. O Serviço de Análises empenha função analítica sobre os dados coletados que foram consolidados, fornecendo relatórios de desempenho para o usuário, além de dados para serem exibidos na Aplicação Web. O Serviço de Processamento, ou Processador, acessa os dados enviados pelo dispositivos ao Message Broker e aplica as transformações necessários para consolidar as informações no banco de dados. Adicionalmente, um Serviço de Autenticação foi incluído para atender às necessidades de segurança dos dados e controle de acesso ao sistema.
     
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios.PNG}
+    \caption{Camada de Negócio - Servidores de Análises, Processamento e Autenticação.}
+    \label{fig:camada_negocios}
+\end{figure}
+
 \subsubsection{Camada de Persistência}
+
+A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os serviços de armazenamento de dados necessários ao sistema. Neste projeto, está previsto apenas um servidor de banco de dados relacional, discutido em maior detalhe na Modelagem de Entidade-Relacionamento.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{figuras/projeto/software/camada_persistencia.PNG}
+    \caption{Camada de Persistência.}
+    \label{fig:camada_persistencia}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.15]{figuras/projeto/software/banco_de_dados.png}
+    \caption{Diagrama de Entidade-Relacionamento.}
+    \label{fig:diagrama_entidade_relacionamento}
+\end{figure}
 
 \begin{figure}[ht]
     \centering
@@ -153,7 +205,4 @@ O Message Broker é simplesmente um corretor de mensagens, que opera sobre o pro
 \subsection{Definição de Tecnologias}
 
 \subsection{Projeto de Implantação}
-
-\subsection{Protótipos das Interfaces}
-%% TODO: Apêndices
 
