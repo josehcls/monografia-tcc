@@ -5,9 +5,14 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem{Cockerham1996}
-\abntrefinfo{Cockerham e Zeng}{COCKERHAM; ZENG}{1996}
-{COCKERHAM, C.~C.; ZENG, Z.-B. {Design III With Marker Loci}.
-\emph{Genetics}, v.~143, p. 1437--1456, 1996.}
+\bibitem{YeastWhite}
+\abntrefinfo{WHITE e ZAINASHEFF}{WHITE; ZAINASHEFF}{2010}
+{WHITE, C.; ZAINASHEFF, J. \emph{Yeast: the practical guide to beer
+  fermentation}. Colorado: Brewers Publications, 2010.}
+
+\bibitem{FermentationMunroe}
+\abntrefinfo{Munroe}{MUNROE}{2006}
+{MUNROE, J.~H. Fermentation. In:  PRIEST, F.; STEWART, G. (Ed.). \emph{Handbook
+  of Brewing}. 2. ed. New York: CRC Press, 2006. p. 487--524.}
 
 \end{thebibliography}
