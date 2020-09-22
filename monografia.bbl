@@ -1,18 +1,18 @@
 \providecommand{\abntreprintinfo}[1]{%
  \citeonline{#1}}
-\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\begin{thebibliography}{}
 \providecommand{\abntrefinfo}[3]{}
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[Munroe 2006]{FermentationMunroe}
-\abntrefinfo{Munroe}{MUNROE}{2006}
-{MUNROE, J.~H. Fermentation. In:  PRIEST, F.; STEWART, G. (Ed.). \emph{Handbook
-  of Brewing}. 2. ed. New York: CRC Press, 2006. p. 487--524.}
-
-\bibitem[White e Zainasheff 2010]{YeastWhite}
+\bibitem{YeastWhite}
 \abntrefinfo{White e Zainasheff}{WHITE; ZAINASHEFF}{2010}
 {WHITE, C.; ZAINASHEFF, J. \emph{Yeast: the practical guide to beer
   fermentation}. Colorado: Brewers Publications, 2010.}
+
+\bibitem{FermentationMunroe}
+\abntrefinfo{Munroe}{MUNROE}{2006}
+{MUNROE, J.~H. Fermentation. In:  PRIEST, F.; STEWART, G. (Ed.). \emph{Handbook
+  of Brewing}. 2. ed. New York: CRC Press, 2006. p. 487--524.}
 
 \end{thebibliography}
