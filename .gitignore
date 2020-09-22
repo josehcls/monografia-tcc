@@ -6,4 +6,5 @@
 *.lot
 *.toc
 *.gz
+*.pdf
 .vscode
