@@ -6,12 +6,13 @@ No projeto a arquitetura de microsserviços foi escolhida como padrão para o si
 
 Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
 
-Adicionalmente, foram desenhados protótipos das interfaces que o usuário tem contato, e estão disponibilizadas no Apêndice \ref{appendice:prototipos}
+% TODO: Adicionalmente, foram desenhados protótipos das interfaces que o usuário tem contato, e estão disponibilizadas no Apêndice \ref{appendice:prototipos}
 
 \subsection{Especificação dos Casos de Uso}
 
 Na definição dos casos de uso do projeto foram definidos dois atores que interagem com o sistema de software a ser desenvolvido, identificados como 
 usuário e dispositivo. O usuário representa o utilizador humano do sistema a ser desenvolvido, responsável por todas as interações humanas necessárias. 
+
 O usuário se comunica com o sistema por duas interfaces, uma aplicação web, que se comunica diretamente com o sistema, e um aplicativo para smartphone, necessário para configurações iniciais do dispositivo. O dispositivo representa o sistema hardware de controle e monitoramento, também desenvolvido neste projeto. Em relação ao sistema de software, ele é tratado como um ator com suas devidas interações; seu projeto e especificações são discutidos na seção destinado ao projeto de hardware.
 
 Segue a especificação dos casos de uso em si, contendo a identificação de cada caso de uso, sua breve descrição, enumeração dos passos que o definem e 
@@ -203,11 +204,9 @@ A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os servi
 
 \subsection{Definição de Tecnologias}
 
-As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação, familiaridade dos autores com ela e facilidade de uso. Dessa forma, foi determinada a utilização da linguagem de programação Python para implementar os microsserviços e as lógicas necessárias no API Gateway. Utilizando o Python, é possível prover de forma simples e com poucos recursos uma API REST utilizando o framework Flask e sendo executado com o servidor Gunicorn. A segurança da aplicação segue padrão de mercado OAuth 2.0 com utilização da biblioteca oauthlib.
+As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação e familiaridade dos autores. Dessa forma, foi determinada a utilização da linguagem de programação Python para implementar os microsserviços e as lógicas necessárias no API Gateway. Utilizando o Python, é possível prover de forma simples e com poucos recursos uma API REST utilizando o framework Flask executado com o servidor Gunicorn. A segurança da aplicação segue padrão OAuth 2.0 implementado pela biblioteca oauthlib.
 
-A interface da Aplicação Web utiliza a biblioteca React do JavaScript, utilizando também a biblioteca chart.js para construção de gráficos. O Aplicativo Mobile é desenvolvido em Java, para utilização em smartphones Android. O banco de dados relacional definido é o PostgreSQL. 
-
-Com finalidade de reduzir custos em primeiro momento e antecipando uma necessidade de escalabilidade ao sistema, a tecnologia de Kubernetes é empregada para preparar e instanciar cada componente em um contâiner virtual, possibilitando a organização e controle de diversos componentes em uma mesma máquina virtual.
+Definiu-se a utilização da biblioteca React da linguagem JavaScript para desenvolvimento da interface da Aplicação Web, utilizando também a biblioteca chart.js para construção de gráficos. Para a interface do Aplicativo Mobile foi definida a linguagem Java, para utilização em smartphones Android. O banco de dados relacional escolhido foi o PostgreSQL. 
 
 % TODO: Melhorar...
 
