@@ -13,8 +13,11 @@ O sensor de temperatura DS18b20 é alimentado pelos pinos de 5V e GND (terra) do
 \end{figure}
 
 
-O excerto de código em linguagem Arduino a seguir representa a função utilizada para ler o valor de saída do sensor. A biblioteca OneWire (https://github.com/PaulStoffregen/OneWire) implementa o protocolo proprietário de comunicação serial da Dallas Semicondutor, fabricante do sensor. Ela é utilizada em conjunto com a biblioteca livre DallasTemperature (https://github.com/milesburton/Arduino-Temperature-Control-Library) para estabelecer a comunicação com o DS18B20.
+O excerto de código em linguagem Arduino a seguir representa a função utilizada para ler o valor de saída do sensor. A biblioteca OneWire implementa o protocolo proprietário de comunicação serial da Dallas Semicondutor, fabricante do sensor. Ela é utilizada em conjunto com a biblioteca livre DallasTemperature para estabelecer a comunicação com o DS18B20.
 
+% // TODO: Referências das bibliotecas
+% https://github.com/milesburton/Arduino-Temperature-Control-Library
+% https://github.com/PaulStoffregen/OneWire
 
 % \begin{lstlisting}[language=C]
 
@@ -106,11 +109,101 @@ A leitura do pH medido pelo sensor pelo microcontrolador segue o seguinte algori
 
 \subsection{Conexão e Comunicação do Microcontrolador}
 
-Com os sensores propriamente conectados e calibrados, o microcontrolador foi configurado para se conectar à Internet através de conexão WiFi e a enviar os dados coletados por meio do protocolo MQTT. O Wemos D1 é controlada pelo módulo ESP8266, de forma que ofereça conectividade WiFi nativa. A biblioteca ESP8266WiFi (https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi) foi utilizada para estabelecer a conexão Wifi, em conjunto com a biblioteca PubSubClient (https://github.com/knolleary/pubsubclient) para publicar mensagens e se inscrever em tópicos MQTT. 
+Com os sensores propriamente conectados e calibrados, o microcontrolador foi configurado para se conectar à Internet através de conexão WiFi e a enviar os dados coletados por meio do protocolo MQTT. O Wemos D1 é controlada pelo módulo ESP8266, de forma que ofereça conectividade WiFi nativa. 
+A biblioteca ESP8266WiFi foi utilizada para estabelecer a conexão Wifi, em conjunto com a biblioteca PubSubClient para publicar mensagens e se inscrever em tópicos MQTT. 
+
+% https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi
+% https://github.com/knolleary/pubsubclient
+
+% // TODO: Colocar código completo em Apêndice e discutir Fluxo completo aqui
+
+\subsection{Controle de Temperatura}
+
+Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
 
 
-% // TODO: Colocar código completo em Apêncice e discutir Fluxo completo aqui
+\subsubsection{Controlador PID}
+
+O controlador PID utiliza 3 ações (proporcional, integrativa e derivativa) controlar a planta minimizando o erro. Sua saída pode ser definida pela equação \ref{eq:pid}. A figura \ref{fig:pid} esquematiza a malha de controle.
+
+\begin{equation}
+%     u(t) = K_pe(t) + K_i\[\int_{0}^{t} e(\tau) \, d\tau \] + K_d\dfrac{de(t)}{dt}
+    u(t) = K_pe(t) + K_i  \int_{0}^{t} e(\tau) \, d\tau + K_d\dfrac{de(t)}{\, dt}
+    \label{eq:pid}
+\end{equation}
+
+Na qual:
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{ |c|c| } 
+            \hline
+            Símbolo   &  Descrição  \\
+            \hline
+            \(K_p\)   &  ganho proporcional  \\
+            \hline
+            \(K_i\)   &  ganho integrativo  \\
+            \hline
+            \(K_d\)   &  ganho derivativo  \\
+            \hline
+            \(e\)   &  erro  \\
+            \hline
+            \(t\)   &  tempo  \\
+            \hline
+            \(\tau\)   &  tempo de integração \\
+            \hline
+        \end{tabular}
+        \caption{\label{tab:variaveis_pid}Descrição das variáveis do controlador PID da Equação \ref{eq:pid}.}
+    \end{center}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.60]{figuras/implementacao/hardware/pid.jpg}
+    \caption{Malha de controle PID.}
+    \label{fig:pid}
+\end{figure}
 
 
+A ação proporcional do controlador produz um sinal de saída proporcional à amplitude do erro $e(t)$. Essa ação é útil para criar uma resposta equivalente ao tamanho do erro do sistema. A ação integral produz um sinal de saída proporcional à magnitude do erro, dependendo não só do seu valor, mas também da sua duração. Essa ação corrige o erro de off-set gerado pela ação proporcional e acelera a resposta do sistema. Por fim, a ação derivativa produz um sinal de saída proporcional à velocidade de variação do erro. Essa ação melhora a estabilidade e velocidade de resposta do sistema através de uma correção antecipada do erro. 
+
+
+\subsubsection{Método de Ziegler-Nichols}
+
+
+Para escolha dos parâmetros de ganho, o método de Ziegler-Nichols foi utilizado. Esse método foi escolhido principalmente pela sua simplicidade e facilidade na sintonização, visto que não é necessário uma modelagem matemática precisa da planta para o seu ajuste. 
+A escolha dos parâmetros é feita a partir da observação da resposta do sistema em malha aberta com a aplicação de um degrau. A figura \ref{fig:resposta_sistema} ilustra a curva de resposta do sistema, e a tabela \ref{tab:parametros_ziegler} lista os parâmetros provenientes do método.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{figuras/implementacao/hardware/resposta.png}
+    \caption{Responda do Sistema em malha aberta a sinal degrau.}
+    \label{fig:resposta_sistema}
+\end{figure}
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{ |c|c|c|c| } 
+            \hline
+            Controlador & \(K_p\) & \(T_I\) & \(T_D\) \\
+            \hline
+            \(P\) & \(1/\alpha\) &  & \\
+            \hline
+            \(P + I\) & \(0,9/\alpha\) & \(3L\) & \\
+            \hline
+            \(P + I + D\) & \(1,2/\alpha\) & \(2L\) & \(0,5L\) \\
+            \hline
+        \end{tabular}
+        \caption{\label{tab:parametros_ziegler} Parâmetros do controlador PID seguindo método de Ziegler-Nichols.}
+    \end{center}
+\end{table}
+
+
+
+\subsubsection{Anti Wind-up}
+
+
+Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida será congelar a ação do controlador em caso de saturação.  
 
 
