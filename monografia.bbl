@@ -1,29 +1,29 @@
 \providecommand{\abntreprintinfo}[1]{%
  \citeonline{#1}}
-\begin{thebibliography}{}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
 \providecommand{\abntrefinfo}[3]{}
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem{FermentationMunroe}
-\abntrefinfo{Munroe}{MUNROE}{2006}
-{MUNROE, J.~H. Fermentation. In:  PRIEST, F.; STEWART, G. (Ed.). \emph{Handbook
-  of Brewing}. 2. ed. New York: CRC Press, 2006. p. 487--524.}
-
-\bibitem{Kunze}
-\abntrefinfo{Kunze}{KUNZE}{2004}
-{KUNZE, W. \emph{Technology Brewing and Malting}. 3. ed. Berlin: VLB Berlin,
-  2004.}
-
-\bibitem{YeastWhite}
-\abntrefinfo{White e Zainasheff}{WHITE; ZAINASHEFF}{2010}
-{WHITE, C.; ZAINASHEFF, J. \emph{Yeast: the practical guide to beer
-  fermentation}. Colorado: Brewers Publications, 2010.}
-
-\bibitem{BoultonQuain}
+\bibitem[Boulton e Quain 2001]{BoultonQuain}
 \abntrefinfo{Boulton e Quain}{BOULTON; QUAIN}{2001}
 {BOULTON, C.; QUAIN, D. \emph{Brewing Yeast and Fermentation}. [S.l.]: Wiley,
   2001.
 ISBN 9780632054756.}
+
+\bibitem[Kunze 2004]{Kunze}
+\abntrefinfo{Kunze}{KUNZE}{2004}
+{KUNZE, W. \emph{Technology Brewing and Malting}. 3. ed. Berlin: VLB Berlin,
+  2004.}
+
+\bibitem[Munroe 2006]{FermentationMunroe}
+\abntrefinfo{Munroe}{MUNROE}{2006}
+{MUNROE, J.~H. Fermentation. In:  PRIEST, F.; STEWART, G. (Ed.). \emph{Handbook
+  of Brewing}. 2. ed. New York: CRC Press, 2006. p. 487--524.}
+
+\bibitem[White e Zainasheff 2010]{YeastWhite}
+\abntrefinfo{White e Zainasheff}{WHITE; ZAINASHEFF}{2010}
+{WHITE, C.; ZAINASHEFF, J. \emph{Yeast: the practical guide to beer
+  fermentation}. Colorado: Brewers Publications, 2010.}
 
 \end{thebibliography}

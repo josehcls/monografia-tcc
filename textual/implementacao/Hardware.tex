@@ -122,7 +122,7 @@ A biblioteca ESP8266WiFi foi utilizada para estabelecer a conexão Wifi, em conj
 Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
 
 
-\subsubsection{Controlador PID}
+\subsubsection*{Controlador PID}
 
 O controlador PID utiliza 3 ações (proporcional, integrativa e derivativa) controlar a planta minimizando o erro. Sua saída pode ser definida pela equação \ref{eq:pid}. A figura \ref{fig:pid} esquematiza a malha de controle.
 
@@ -168,7 +168,7 @@ Na qual:
 A ação proporcional do controlador produz um sinal de saída proporcional à amplitude do erro $e(t)$. Essa ação é útil para criar uma resposta equivalente ao tamanho do erro do sistema. A ação integral produz um sinal de saída proporcional à magnitude do erro, dependendo não só do seu valor, mas também da sua duração. Essa ação corrige o erro de off-set gerado pela ação proporcional e acelera a resposta do sistema. Por fim, a ação derivativa produz um sinal de saída proporcional à velocidade de variação do erro. Essa ação melhora a estabilidade e velocidade de resposta do sistema através de uma correção antecipada do erro. 
 
 
-\subsubsection{Método de Ziegler-Nichols}
+\subsubsection*{Método de Ziegler-Nichols}
 
 
 Para escolha dos parâmetros de ganho, o método de Ziegler-Nichols foi utilizado. Esse método foi escolhido principalmente pela sua simplicidade e facilidade na sintonização, visto que não é necessário uma modelagem matemática precisa da planta para o seu ajuste. 
@@ -207,3 +207,103 @@ A escolha dos parâmetros é feita a partir da observação da resposta do siste
 Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida será congelar a ação do controlador em caso de saturação.  
 
 
+\subsubsection*{Características do Sistema}
+
+O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador será embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente, as seguintes trocas térmicas ocorrem no sistema. 
+
+
+\begin{enumerate}
+    \item A manta térmica recebe calor do ambiente através da convecção e radiação do ar. 
+    \item A manta térmica transfere calor por condução para o fermentador. 
+    \item O fermentador transfere calor por condução para o líquido fermentado. 
+    \item O líquido fermentado produz calor pelo processo de fermentação (processo exotérmico).
+\end{enumerate}
+
+
+Sendo assim, o sistema com a pastilha de Peltier deve retirar do sistema uma quantidade de calor proporcional a essa recebida e gerada para manter uma temperatura estável abaixo do ambiente. Como a quantidade de calor retirada por um Peltier é proporcional a corrente, a tensão fornecida a pastilha é variada através de uma circuito ponte H que tem a sua amplitude de tensão de saída regulada por uma porta PWM.  
+
+
+% \subsubsection*{Simulação do Sistema}
+
+% Utilizando os blocos térmicos do simscape no Software Matlab, e aplicando as propriedades dos materiais é possível chegar no modelo aproximado da transmissão de calor dentro do sistema da figura \ref{fig:transcal}. Simulando o sistema no Matlab utilizando os parâmetros da tabela \ref{tab:sim_matlab}, foi obtido que éo valor a ser retirado pelo Peltierpara manter uma diferença de 10 °C entre fermentador e ambiente é de ######.
+
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.45]{figuras/implementacao/hardware/transcal.png}
+%     \caption{Modelo de transmissão de calor do fermentador.}
+%     \label{fig:transcal}
+% \end{figure}
+
+
+% \begin{table}[H]
+%     \begin{center}
+%         \begin{tabular}{ |c|c| } 
+%             \hline
+%             Parâmetro & Valor \\
+%             \hline
+%             Temperatura ambiente & 25 °C \\
+%             \hline
+%             Temperatura do fermentador & 15 °C \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%             x & x \\
+%             \hline
+%         \end{tabular}
+%         \caption{\label{tab:parametros_ziegler} Parâmetros utilizados na simulação do sistema de transferência de calor.}
+%     \end{center}
+% \end{table}
+
+
+\subsubsection*{Circuito Ponte H}
+
+O circuito ponte H (figura \ref{fig:ponte_h}) permite que a amplitude e sentido da tensão de entrada da pastilha de Peltier seja controlado digitalmente por um sinal PWM (Pulse Width Modulation) do microcontrolador. No Software embarcado, um valor entre 0 e 255 é utilizado para definir o duty cycle da onda quadrada do sinal PWM, como exemplificado na figura \ref{fig:pwm}. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{figuras/implementacao/hardware/ponte_h.jpg}
+    \caption{Modelo ponte H - L298N.}
+    \label{fig:ponte_h}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.30]{figuras/implementacao/hardware/pwm.png}
+    \caption{Onda quadrada do sinal PWM para alguns valores especificados no microcontrolador.}
+    \label{fig:pwm}
+\end{figure}
+
+
+\subsubsection*{Montagem do Dispositivo}
+
+Com as definições de controle discutidas, foi projetado o dispositivo da figura \ref{fig:dispositivo_term}, em escala aproximada. O dispositivo pode ser dividido em três partes descritas a seguir:
+
+\begin{enumerate}
+    \item Parte quente : Essa parte é ligada na face quente da pastilha e é formada por uma ventoinha e um dissipador de calor. Uma boa dissipação de calor garante uma melhor eficiência da partilha e permite que ela forneça quantidades de calor maiores para o sistema;
+    \item Pastilha de Peltier: Pastilha que recebe a corrente e transforma energia elétrica em térmica. A face quente e face fria são isoladas por material isolante térmico, que ajuda na não interferência entre as partes e melhora a eficiência do sistema;
+    \item Parte fria: essa parte é ligada na face fria da pastilha. Ela retira calor do sistema através de uma placa de cobra e barras de aço inox. Apesar do cobre ter uma condutividade térmica melhor, o aço inox foi escolhido para fazer a transmissão para o mosto + leveduras, por não interferir no seu gosto na exposição de pHs menores. 
+\end{enumerate}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{figuras/implementacao/hardware/montagem.png}
+    \caption{Esquema do perfil do dispositivo controlador de temperatura, escala aproximada.}
+    \label{fig:pwm}
+\end{figure}
