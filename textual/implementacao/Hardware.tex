@@ -122,7 +122,7 @@ A biblioteca ESP8266WiFi foi utilizada para estabelecer a conexão Wifi, em conj
 Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
 
 
-\subsubsection*{Controlador PID}
+\subsubsection{Controlador PID}
 
 O controlador PID utiliza 3 ações (proporcional, integrativa e derivativa) controlar a planta minimizando o erro. Sua saída pode ser definida pela equação \ref{eq:pid}. A figura \ref{fig:pid} esquematiza a malha de controle.
 
@@ -168,7 +168,7 @@ Na qual:
 A ação proporcional do controlador produz um sinal de saída proporcional à amplitude do erro $e(t)$. Essa ação é útil para criar uma resposta equivalente ao tamanho do erro do sistema. A ação integral produz um sinal de saída proporcional à magnitude do erro, dependendo não só do seu valor, mas também da sua duração. Essa ação corrige o erro de off-set gerado pela ação proporcional e acelera a resposta do sistema. Por fim, a ação derivativa produz um sinal de saída proporcional à velocidade de variação do erro. Essa ação melhora a estabilidade e velocidade de resposta do sistema através de uma correção antecipada do erro. 
 
 
-\subsubsection*{Método de Ziegler-Nichols}
+\subsubsection{Método de Ziegler-Nichols}
 
 
 Para escolha dos parâmetros de ganho, o método de Ziegler-Nichols foi utilizado. Esse método foi escolhido principalmente pela sua simplicidade e facilidade na sintonização, visto que não é necessário uma modelagem matemática precisa da planta para o seu ajuste. 

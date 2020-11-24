@@ -7,15 +7,12 @@ para o controle e monitoramento do sistema
 
 \subsection{Microcontrolador}
 
-% // TODO: Atualizar para Wemos D1
-O microcontrolador Arduino Uno R3 é versátil e ideal para a prototipagem e será
-utilizado como microcontrolador do projeto. O mesmo possui portas i/o analógicas e
-digitais, fontes de alimentação de 3,3V/5V e é programado na linguagem C.
+O microcontrolador Wemos D1 (figura \ref{fig:wemos}) é versátil, muito semelhante a micontroladores Arduino, e ideal para a prototipagem e foi escolhido para prototipagem do projeto. Ele possui portas de entrada e saída analógicas e digitais, fontes de alimentação de 3,3V a 5V e é programado na linguagem C. O circuito da placa foi desenvolvido tendo como base o microchip ESP8266 que oferece conectividade WiFi, diferente dos modelos mais simples de Arduino.
 
 % \ref{fig:wemos}
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.45]{figuras/projeto/hardware/wemos_d1.png}
+    \includegraphics[scale=0.40]{figuras/projeto/hardware/wemos_d1.png}
     \caption{Wemos D1}
     \label{fig:wemos}
 \end{figure}
@@ -27,15 +24,15 @@ A definição dos sensores a serem utilizados se baseou nos seguintes critérios
 \begin{itemize}
     \item Faixa de operação compatível com os requisitos e especificidades do sistema
     \item Disponibilidade no mercado brasileiro
-    \item Compatibilidade com o Arduino
+    \item Compatibilidade com o Microcontrolador
     \item Custo de aquisição
 \end{itemize}
 
-O primeiro critério é trivial, e deve ser eliminatório em qualquer avaliação. O critério de disponibilidade no mercado brasileiro teve essa classificação pelo desejo de se adquirir e trabalhar com os sensores o mais rápido possível e mitigar o risco com atrasos devido a importações e falta de estoque. A compatibilidade com o Arduino exprime quão diretamente um sensor pode ser utilizado, principalmente em relação a alimentação, sendo preferíveis sensores que tenham tensões de entrada em comum com o microcontrolador, i.e., 3,3 ou 5V. Finalmente, custos de aquisição menores são preferíveis.
+O primeiro critério é trivial, e deve ser eliminatório em qualquer avaliação. O critério de disponibilidade no mercado brasileiro teve essa classificação pelo desejo de se adquirir e trabalhar com os sensores o mais rápido possível e mitigar o risco com atrasos devido a importações e falta de estoque. A compatibilidade com o Wemos D1 exprime quão diretamente um sensor pode ser utilizado, principalmente em relação a alimentação, sendo preferíveis sensores que tenham tensões de entrada em comum com o microcontrolador, i.e., 3,3 ou 5V. Finalmente, custos de aquisição menores são preferíveis.
 
 \subsection{Sensor de Temperatura}
 
-Para a medição de temperatura o sensor escolhido foi o circuito integrado DS18B20 (Figura \ref{fig:ds18b20}) com uma vedação impermeável. É um sensor que atende as especificações e é amplamente utilizado em conjunto com o Arduino e microcontroladores semelhantes, e possui alta disponibilidade no mercado a um baixo custo, sendo comercializado em uma versão impermeável, muita prática para esse projeto. A leitura da temperatura pelo microcontrolador é realizada por apenas um fio de dados, utilizando a interface One-Wire. 
+Para a medição de temperatura o sensor escolhido foi o circuito integrado DS18B20 (Figura \ref{fig:ds18b20}) com uma vedação impermeável. É um sensor que atende as especificações e é amplamente utilizado em conjunto com o Wemos D1, Arduino e outros microcontroladores semelhantes, e possui alta disponibilidade no mercado a um baixo custo, sendo comercializado em uma versão impermeável, muita prática para esse projeto. A leitura da temperatura pelo microcontrolador é realizada por apenas um fio de dados, utilizando a interface One-Wire. 
 
 Ficha técnica:
 \begin{itemize}
@@ -47,7 +44,7 @@ Ficha técnica:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.50]{figuras/projeto/hardware/ds18b20.jpg}
+    \includegraphics[scale=0.40]{figuras/projeto/hardware/ds18b20.jpg}
     \caption{Sensor DS18B20}
     \label{fig:ds18b20}
 \end{figure}
@@ -181,24 +178,46 @@ Ficha técnica:
 
 \subsection{Atuador de Temperatura}
 
-Para a montagem do nosso dispositivo que realiza trocas de calor com o fermentador, as células termoelétricas de Peltier se mostraram uma boa opção. Elas são versáteis, possuem a capacidade de esfriar ou aquecer o fermentador dependendo do sentido da corrente aplicada em seus terminais e fornecem calor proporcionalmente a corrente fornecida ao sistema.
+Para a montagem do nosso dispositivo que realiza trocas de calor com o fermentador, as células termoelétricas de Peltier (figura \ref{fig:peltier}) se mostraram uma boa opção. Elas são versáteis, possuem a capacidade de esfriar ou aquecer o fermentador dependendo do sentido da corrente aplicada em seus terminais e fornecem calor proporcionalmente a corrente fornecida ao sistema.
 
 
-A célula é constituída por duas chapas de material isolante com um material condutor entre elas, como é esquematizado na Figura \ref{fig:esquema_peltier}. Quando uma diferença de tensão é aplicada entre os terminais da célula, o movimento dos semicondutores de tipo “n” e “p” transforma a energia elétrica em energia térmica, criando um fluxo de calor que aquece uma célula e esfria outra. Em um semicondutor do tipo-n, o calor é absorvido próximo ao terminal negativo e rejeitado próximo ao terminal positivo, já em um semicondutor do tipo-p o processo se dá de maneira inversa. Como os pares tipo “n” e “p” tem características diferentes, é possível alterar o fluxo de calor dependendo do sentido da corrente.
+A célula é constituída por duas chapas de material isolante com um material condutor entre elas, como é esquematizado na figura \ref{fig:esquema_peltier}. Quando uma diferença de tensão é aplicada entre os terminais da célula, o movimento dos semicondutores de tipo “n” e “p” transforma a energia elétrica em energia térmica, criando um fluxo de calor que aquece uma célula e esfria outra. Em um semicondutor do tipo-n, o calor é absorvido próximo ao terminal negativo e rejeitado próximo ao terminal positivo, já em um semicondutor do tipo-p o processo se dá de maneira inversa. Como os pares tipo “n” e “p” tem características diferentes, é possível alterar o fluxo de calor dependendo do sentido da corrente.
 
 
 \begin{figure}[h]
     \centering
+    \includegraphics[scale=0.20]{figuras/projeto/hardware/pastilha_peltier.jpeg}
+    \caption{Célula de Peltier modelo TEC1-12796.}
+    \label{fig:peltier}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
     \includegraphics[scale=0.60]{figuras/projeto/hardware/peltier.png}
-    \caption{Esquema de uma célula de Peltier}
+    \caption{Esquema de funcionamento de uma célula de Peltier.}
     \label{fig:esquema_peltier}
 \end{figure}
 
 
-Um exemplo de aplicação comercial das células de Peltier para controle da temperatura de fermentação, pode ser observada no produto desenvolvido pela Brew Jacket, que consiste em uma célula de Peltier conectada em lado a uma haste de transferência de calor, que fica em contato com a solução, e ao outro lado, a um dissipador de calor e ventoinha, que ficam externos ao fermentador. O produto recomenda a utilização de uma capa térmica sobre o fermentador para aumentar a eficiência do controle de temperatura.
+Um exemplo de aplicação comercial das células de Peltier para controle da temperatura de fermentação, pode ser observada no produto desenvolvido pela empresa Brew Jacket. Inspirado nessa solução, o sistema de troca de calor será composto por um dissipador de calor e uma ventoinha na face quente (figura \ref{fig:cooler}), e uma haste de aço inoxidável (figura \ref{fig:haste_inox}) ligado no lado frio, o servirá como condutor de calor entre a o fermentador e o módulo de Peltier. O aço inoxidável não conduz calor tão bem quanto o cobre ou o alumínio, mas devido resistência a corrosão em meio ácido, é a única opção segura das três.
 
 
-Uma alternativa, ainda se utilizando a célula de peltier, é realizar a troca de calor com a solução pela parede do fermentador, de forma menos invasiva e com menores riscos de contaminação, mas gerando uma dependência maior à geometria e material do fermentador. Opções a serem estudadas nesta alternativa são a utilização das células em contato próximo à parede do fermentador; e a construção de um pequeno sistema que utilize um líquido circulando por serpentinas em torno ao fermentador, com as células  controlando a temperatura do líquido.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.20]{figuras/projeto/controle/cooler.png}
+    \caption{Dissipador de calor e ventoinha, modelo utilizado em CPU.}
+    \label{fig:cooler}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.30]{figuras/projeto/controle/haste.png}
+    \caption{Haste de Aço inoxidável.}
+    \label{fig:haste_inox}
+\end{figure}
+
+Uma alternativa, ainda se utilizando a célula de peltier, é realizar a troca de calor com a solução pela parede do fermentador, de forma menos invasiva e com menores riscos de contaminação, mas gerando uma dependência maior à geometria e material do fermentador. Opções são a utilização das células em contato próximo à parede do fermentador; e a construção de um pequeno sistema que utilize um líquido circulando por serpentinas em torno ao fermentador, com as células  controlando a temperatura do líquido.
 
 % // TODO: Projeto de Montagem
 % // TODO: Diagrama do Circuito

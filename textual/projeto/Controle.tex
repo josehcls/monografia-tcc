@@ -122,30 +122,14 @@ O processo de fermentação é exotérmico, logo existe a produção de calor. S
 
 \subsection{Dispositivo para Troca de Calor}
 
-Um dos maiores desafios do projeto é criar um sistema que consiga trocar calor de forma eficiente, não seja intrusivo e consiga ser simples o suficiente para ser utilizado por um hobbysta. Conforme anteriormente especificado, a ideia é utilizar placas de peltier para realizar essa troca. A maior vantagem do uso dessas placas é a possibilidade de controlar o calor associado proporcionalmente a quantidade de corrente fornecida ao módulo, através da seguinte equação \ref{eq:qp}.
+Um dos maiores desafios do projeto é criar um sistema que consiga trocar calor de forma eficiente, não seja intrusivo e consiga ser simples o suficiente para ser utilizado por um hobbysta. Conforme anteriormente especificado, a ideia é utilizar placas de peltier para realizar essa troca. A maior vantagem do uso dessas placas é a possibilidade de controlar o calor associado proporcionalmente a quantidade de corrente fornecida ao módulo, através da seguinte equação \ref{eq:qp}. Possibilitando assim o uso de um circuito junto com o microcontrolador para o controle de temperatura.
 
 \begin{equation}
     Q_P = \pi \cdot 1
     \label{eq:qp}
 \end{equation}
 
-Possibilitando assim o uso de um circuito junto com o microcontrolador para o controle de temperatura. 
-O sistema será composto por um dissipador de calor e um dissipador de calor e uma ventoinha na face quente (figura \ref{fig:cooler}). Dessa forma podemos otimizar a expulsão de calor do dispositivo. E uma haste de aço inoxidável (figura \ref{fig:haste_inox}) ligado no lado frio, o metal é considerado um bom condutor térmico e servirá como condutor de calor entre a o fermentador e o módulo de Peltier. Essa abordagem foi inspirada no aparelho homebrew citado anteriormente. 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.20]{figuras/projeto/controle/cooler.png}
-    \caption{Dissipador de calor e ventoinha, modelo utilizado em CPU.}
-    \label{fig:cooler}
-\end{figure}
-
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.30]{figuras/projeto/controle/haste.png}
-    \caption{Haste de Aço inoxidável.}
-    \label{fig:haste_inox}
-\end{figure}
 
 % // TODO: Simulação com Matlab
 % // TODO: Revisão das Fórmulas
