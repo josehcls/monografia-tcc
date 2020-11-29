@@ -13,11 +13,7 @@ O sensor de temperatura DS18b20 é alimentado pelos pinos de 5V e GND (terra) do
 \end{figure}
 
 
-O excerto de código em linguagem Arduino a seguir representa a função utilizada para ler o valor de saída do sensor. A biblioteca OneWire implementa o protocolo proprietário de comunicação serial da Dallas Semicondutor, fabricante do sensor. Ela é utilizada em conjunto com a biblioteca livre DallasTemperature para estabelecer a comunicação com o DS18B20.
-
-% // TODO: Referências das bibliotecas
-% https://github.com/milesburton/Arduino-Temperature-Control-Library
-% https://github.com/PaulStoffregen/OneWire
+O excerto de código em linguagem Arduino a seguir representa a função utilizada para ler o valor de saída do sensor. A biblioteca OneWire (\url{https://github.com/PaulStoffregen/OneWire}) implementa o protocolo proprietário de comunicação serial da Dallas Semicondutor, fabricante do sensor. Ela é utilizada em conjunto com a biblioteca livre DallasTemperature (\url{https://github.com/milesburton/Arduino-Temperature-Control-Library}) para estabelecer a comunicação com o DS18B20.
 
 \begin{lstlisting}[language=C]
 
@@ -110,10 +106,8 @@ A leitura do pH medido pelo sensor pelo microcontrolador segue o seguinte algori
 \subsection{Conexão e Comunicação do Microcontrolador}
 
 Com os sensores propriamente conectados e calibrados, o microcontrolador foi configurado para se conectar à Internet através de conexão WiFi e a enviar os dados coletados por meio do protocolo MQTT. O Wemos D1 é controlada pelo módulo ESP8266, de forma que ofereça conectividade WiFi nativa. 
-A biblioteca ESP8266WiFi foi utilizada para estabelecer a conexão Wifi, em conjunto com a biblioteca PubSubClient para publicar mensagens e se inscrever em tópicos MQTT. 
+A biblioteca ESP8266WiFi (\url{https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi}) foi utilizada para estabelecer a conexão Wifi, em conjunto com a biblioteca PubSubClient (\url{https://github.com/knolleary/pubsubclient}) para publicar mensagens e se inscrever em tópicos MQTT. 
 
-% https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi
-% https://github.com/knolleary/pubsubclient
 
 % // TODO: Colocar código completo em Apêndice e discutir Fluxo completo aqui
 

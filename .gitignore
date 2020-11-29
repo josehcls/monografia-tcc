@@ -19,3 +19,6 @@
 *.tmp
 *.xdv
 *.xref
+*.synctex(busy)
+*.out
+

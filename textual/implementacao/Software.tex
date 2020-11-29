@@ -9,13 +9,29 @@ Além disso, foram priorizados serviços essenciais para o funcionamento geral d
 Os links de acesso para os repositórios de código fonte por componente são listados no apêndice \ref{appendice:repositorios}. Eles foram salvos na plataforma Github e serão mantidos públicos para consulta e oportunidade de continuidade do projeto, desde que seguindo os termos de licença especificados na plataforma.
 
 
-\subsection{Camada de Bancos de Dados}
+\subsection{Camada de Persistência}
 
 
+A Camada de Persistência foi rapidamente implementada instanciando-se um banco de dados na nuvem da AWS (Amazon Web Services) pelo serviço RDS e executando o script de DDL (Data Definition Language) que foi gerado a partir do diagrama da figura \ref{fig:diagrama_entidade_relacionamento}. A plataforma utilizada para confecionar o diagrama (\url{https://dbdiagram.io/}) oferece o download do código de geração do banco de dados a partir do diagrama. Foram então realizadas algumas modificações no script gerado, para incluir a criação de índices e estabelecer o relacionamento entre as tabelas.  
 
-% link para os repositórios de códigos está no apêndice schrubles
+
+    O arquivo de extensão sql para configuração do banco de dados está disponível no seguinte repositório de códigos da plataforma Github: \url{https://github.com/josehcls/tcc-configuracao}
+
+
+\subsection{Camada de Negócio}
+
+
+\subsubsection{Servidores de Registro e Receitas}
+
 % começar pelo setup da informação
 % testes automatizados pra testar cadastros
+
+\subsubsection{Servidor de Processamento}
+
 % app para juntar serviços
+
+\subsection{Interface Web}
 % front end
+
+\subsection{Implantação}
 % docker
