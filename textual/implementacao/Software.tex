@@ -1,3 +1,21 @@
 \section{Implementação de Software}
 
-\textcolor{red}{\{Descrição de como o Software foi desenvolvido e implantado.\}}
+A implementação do software seguiu a estratégia de se implementar primeiramente componentes que não possuem dependência para funcionar, seguindo para os componentes que tem como dependência os que foram implementados e assim por diante. De forma geral, seguindo o diagrama de componentes da figura \ref{fig:diagrama_componentes} no sentido da direita para esquerda, foram implementadas em ordem, as camadas de Banco de Dados, de Negócio, Intermediária e de Interface. 
+
+
+Além disso, foram priorizados serviços essenciais para o funcionamento geral do projeto, i.e., os componentes de Aplicação Mobile e Autenticação, que garantem melhoras na utilização do usuário e segurança da informação, foram considerados menos prioritários que os demais componentes, que atuam desempenham a função primária do projeto, que é controlar e monitorar a temperatura de fermentação de cervejas.
+
+
+Os links de acesso para os repositórios de código fonte por componente são listados no apêndice \ref{appendice:repositorios}. Eles foram salvos na plataforma Github e serão mantidos públicos para consulta e oportunidade de continuidade do projeto, desde que seguindo os termos de licença especificados na plataforma.
+
+
+\subsection{Camada de Bancos de Dados}
+
+
+
+% link para os repositórios de códigos está no apêndice schrubles
+% começar pelo setup da informação
+% testes automatizados pra testar cadastros
+% app para juntar serviços
+% front end
+% docker

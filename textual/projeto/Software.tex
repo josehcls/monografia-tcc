@@ -4,6 +4,10 @@
 
 A partir dos Requisitos Técnicos levantados, foi realizado o projeto de software. O projeto se iniciou com a definição de casos de uso a serem implementados, de forma a satisfazer os requisitos técnicos, em conjunto o diagrama de casos de uso definido pela UML foi elaborado para prover apresentação visual. Em seguida, as informações que devem ser armazenadas pelo sistema foram levantadas e a relação entre elas foi estabelecida, sendo representada no diagrama de entidade-relacionamento. O passo seguinte foi a definição da arquitetura de software do sistema.
 
+
+Foram seguidos os padrões da UML apresentados por \citeonline{UML}, tentando-se atentar às convenções definidas, contudo, alguns recursos gráficos como utilização de cores foram utilizadas com a finalidade de tornar o diagrama mais informativo.
+
+
 No projeto a arquitetura de microsserviços foi escolhida como padrão para o sistema. Essa arquitetura define padrões de modularização do sistema em componentes pequenos e altamente especializados, conferindo facilidades de manutenção e escalabilidade em contraste com a arquitetura de monólito. Em contrapartida, o sistema é mais complexo de se implementar e implantar, devido a separação dos módulos, contudo, considerando o desejo de continuar este projeto após a entrega e os padrões de mercado atuais a abordagem de microsserviços é considerada a mais adequada. 
 
 Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
@@ -127,7 +131,7 @@ A arquitetura de software do projeto foi estruturada tendo como base o fluxo da 
 \subsubsection{Camada de Interface}
 A Camada de Interface (figura \ref{fig:camada_interface}) contém os componentes que fornecem interface direta aos atores definidos na modelagem de casos de uso. Sua função, portanto, reside na interação com os atores e comunicação de suas ações para a próxima camada, a Camada Intermediária. São três componentes de interface que compõe essa camada: Aplicação Front-end, Aplicação Mobile e o Software Embarcado no dispositivo. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_interface.PNG}
     \caption{Camada de Interface.}
@@ -144,7 +148,7 @@ O Software Embarcado no dispositivo, além das funcionalidades de monitoramento 
 
 Toda a comunicação entre os atores e o sistema é realizada por mediação da Camada Intermediária (figura \ref{fig:camada_intermediaria}). O tráfego pode ocorrer pelos protocolos HTTP ou MQTT. O fluxo por HTTP é mediado pelo Serviço de API Gateway, que roteia as requisições externas para os devidos microsserviços, enquanto que o fluxo MQTT, composto por mensagens, é controlado pelo Message Broker, que organiza as mensagens nos fluxos dispositivo para sistema e sistema para dispositivo.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_intermediaria.PNG}
     \caption{Camada Intermediária.}
@@ -161,7 +165,7 @@ Os microsserviços do sistema, que aplicam as regras de negócios, estão presen
 
 O Servidor de Registro (figura \ref{fig:camada_negocios_registro}) comporta os Serviços de Usuários e de Dispositivos, que são responsáveis pelo cadastro, recuperação, atualização e deleção  (CRUD, em inglês) dos registros de usuários e registros, respectivamente. Além disso, o Serviço de Usuários controla a associação entre um usuário e seus dispositivos.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios_registro.PNG}
     \caption{Camada de Negócio - Servidor de Registros.}
@@ -179,7 +183,7 @@ Os Serviços de Controle, Receitas e Lotes também exercem a responsabilidade so
 
 A figura \ref{fig:camada_negocios} ilustra os demais serviços da Camada de Negócios. O Serviço de Análises empenha função analítica sobre os dados coletados que foram consolidados, fornecendo relatórios de desempenho para o usuário, além de dados para serem exibidos na Aplicação Web. O Serviço de Processamento, ou Processador, acessa os dados enviados pelo dispositivos ao Message Broker e aplica as transformações necessários para consolidar as informações no banco de dados. Adicionalmente, um Serviço de Autenticação foi incluído para atender às necessidades de segurança dos dados e controle de acesso ao sistema.
     
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios.PNG}
     \caption{Camada de Negócio - Servidores de Análises, Processamento e Autenticação.}
@@ -190,7 +194,7 @@ A figura \ref{fig:camada_negocios} ilustra os demais serviços da Camada de Neg�
 
 A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os serviços de armazenamento de dados necessários ao sistema. Neste projeto, está previsto apenas um servidor de banco de dados relacional, discutido em maior detalhe na Modelagem de Entidade-Relacionamento.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_persistencia.PNG}
     \caption{Camada de Persistência.}
@@ -213,15 +217,19 @@ A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os servi
 
 \subsection{Definição de Tecnologias}
 
-As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação e familiaridade dos autores. Dessa forma, foi determinada a utilização da linguagem de programação Python para implementar os microsserviços e as lógicas necessárias no API Gateway. Utilizando o Python, é possível prover de forma simples e com poucos recursos uma API REST utilizando o framework Flask executado com o servidor Gunicorn. A segurança da aplicação segue padrão OAuth 2.0 implementado pela biblioteca oauthlib.
+As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação e familiaridade dos autores. Dessa forma, para implementação dos microsserviços que transacionam os dados, foi escolhida a linguagem de programação Java, sendo uma linguagem fortemente tipificada, é natural controlar o formato dos dados que devem ser salvos, simplificando validações de consistência. A biblioteca Spring Boot irá prover a API REST necessária. 
 
-Definiu-se a utilização da biblioteca React da linguagem JavaScript para desenvolvimento da interface da Aplicação Web, utilizando também a biblioteca chart.js para construção de gráficos. Para a interface do Aplicativo Mobile foi definida a linguagem Java, para utilização em smartphones Android. O banco de dados relacional escolhido foi o PostgreSQL. 
 
-% // TODO: Melhorar Definição de Tecnologias
+Para o desenvolvimento do API Gateway e dos serviços mais pontuais, como Processamento, Análise e Autenticação, foi escolhida a linguagem Python, que para componentes menores, oferece um overhead menor de arquivos de classe e de configuração, conferindo um pouco mais de agilidade na implementação. A interface de programação é simplesmente provida pela união do framework Flask com o servidor Gunicorn. A segurança da aplicação seguirá padrão OAuth 2.0 implementado pela biblioteca oauthlib.
 
-\subsection{Projeto de Implantação}
 
-% // TODO: Escrever Projeto de Implantação
+Para desenvolvimento da interface da Aplicação Web optou-se pela utilização da biblioteca React da linguagem JavaScript, utilizando também a biblioteca chart.js para construção de gráficos. Para a interface do Aplicativo Mobile foi definida a linguagem Java, para utilização em smartphones Android. 
+
+
+Todos os dados do sistema serão armazenados no banco de dados relacional PostgreSQL. Como o projeto prevê diversos componentes, torna-se vantajosa a utilização de tecnologia de conteinerização de aplicações, nesse caso, será utilizada a tecnologia Docker que permite definir programatizar a implantação dos vários componentes do sistema, através de arquivos de configuração, tornando a tarefa de disponibilização dos serviços mais rápida e escalável.
+
+
+
 % // TODO: Escrever Fluxos de Telas
 % // TODO: Escrever Fluxos Alocação de Dispositivo
 

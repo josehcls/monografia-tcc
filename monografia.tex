@@ -24,6 +24,7 @@
 \usepackage{float}
 \restylefloat{table}
 \usepackage[dvipsnames]{xcolor}
+\usepackage[breaklinks=true, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black]{hyperref}
 
 % ========== Language options ==========
 \usepackage[brazil]{babel}
@@ -123,13 +124,12 @@
 
 % ========== Resumo ==========
 \begin{resumo}
-Resumo...
-% // TODO: Resumo
+\input{./textual/0_Resumo.tex}
+% // TODO: Revisar Resumo
 %
 \\[3\baselineskip]
 %
-% // TODO: Revisar Palavras Chave
-\textbf{Palavras-Chave} -- Cerveja, Fermentação Alcoólica, Produção de Bebidas, Controle de Processos.
+\textbf{Palavras-Chave} -- Produção de Bebidas, Fermentação Alcoólica, Cerveja, Controle de Processos.
 \end{resumo}
 
 
@@ -210,6 +210,11 @@ Lista de símbolos...
 \apendice{}
 \input{./apendices/Levantemento_bibliografico.tex}
 \label{appendice:levantamento_bibliografico}
+
+\input{./apendices/Repositorios.tex}
+\label{appendice:repositorios}
+
+% // TODO: Links para Repositórios
 
 % ========== Anexos (opcional) ==========
 \anexo

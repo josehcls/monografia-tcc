@@ -184,14 +184,14 @@ Para a montagem do nosso dispositivo que realiza trocas de calor com o fermentad
 A célula é constituída por duas chapas de material isolante com um material condutor entre elas, como é esquematizado na figura \ref{fig:esquema_peltier}. Quando uma diferença de tensão é aplicada entre os terminais da célula, o movimento dos semicondutores de tipo “n” e “p” transforma a energia elétrica em energia térmica, criando um fluxo de calor que aquece uma célula e esfria outra. Em um semicondutor do tipo-n, o calor é absorvido próximo ao terminal negativo e rejeitado próximo ao terminal positivo, já em um semicondutor do tipo-p o processo se dá de maneira inversa. Como os pares tipo “n” e “p” tem características diferentes, é possível alterar o fluxo de calor dependendo do sentido da corrente.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.20]{figuras/projeto/hardware/pastilha_peltier.jpeg}
     \caption{Célula de Peltier modelo TEC1-12796.}
     \label{fig:peltier}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.60]{figuras/projeto/hardware/peltier.png}
     \caption{Esquema de funcionamento de uma célula de Peltier.}
@@ -202,7 +202,7 @@ A célula é constituída por duas chapas de material isolante com um material c
 Um exemplo de aplicação comercial das células de Peltier para controle da temperatura de fermentação, pode ser observada no produto desenvolvido pela empresa Brew Jacket. Inspirado nessa solução, o sistema de troca de calor será composto por um dissipador de calor e uma ventoinha na face quente (figura \ref{fig:cooler}), e uma haste de aço inoxidável (figura \ref{fig:haste_inox}) ligado no lado frio, o servirá como condutor de calor entre a o fermentador e o módulo de Peltier. O aço inoxidável não conduz calor tão bem quanto o cobre ou o alumínio, mas devido resistência a corrosão em meio ácido, é a única opção segura das três.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.20]{figuras/projeto/controle/cooler.png}
     \caption{Dissipador de calor e ventoinha, modelo utilizado em CPU.}
@@ -210,14 +210,14 @@ Um exemplo de aplicação comercial das células de Peltier para controle da tem
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.30]{figuras/projeto/controle/haste.png}
     \caption{Haste de Aço inoxidável.}
     \label{fig:haste_inox}
 \end{figure}
 
-Uma alternativa, ainda se utilizando a célula de peltier, é realizar a troca de calor com a solução pela parede do fermentador, de forma menos invasiva e com menores riscos de contaminação, mas gerando uma dependência maior à geometria e material do fermentador. Opções são a utilização das células em contato próximo à parede do fermentador; e a construção de um pequeno sistema que utilize um líquido circulando por serpentinas em torno ao fermentador, com as células  controlando a temperatura do líquido.
+Uma alternativa, ainda se utilizando a célula de Peltier, é realizar a troca de calor com a solução pela parede do fermentador, de forma menos invasiva e com menores riscos de contaminação, mas gerando uma dependência maior à geometria e material do fermentador. Uma alternativa seria utilizar a células em contato próximo à parede do fermentador; e a construção de um pequeno sistema que utilize um fluido circulando por serpentinas em torno ao fermentador, com as células atuando a temperatura do fluido.
 
 % // TODO: Projeto de Montagem
 % // TODO: Diagrama do Circuito
