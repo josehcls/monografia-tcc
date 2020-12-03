@@ -15,7 +15,7 @@ Os links de acesso para os repositórios de código fonte por componente são li
 A Camada de Persistência foi rapidamente implementada instanciando-se um banco de dados na nuvem da AWS (Amazon Web Services) pelo serviço RDS e executando o script de DDL (Data Definition Language) que foi gerado a partir do diagrama da figura \ref{fig:diagrama_entidade_relacionamento}. A plataforma utilizada para confecionar o diagrama (\url{https://dbdiagram.io/}) oferece o download do código de geração do banco de dados a partir do diagrama. Foram então realizadas algumas modificações no script gerado, para incluir a criação de índices e estabelecer o relacionamento entre as tabelas.  
 
 
-    O arquivo de extensão sql para configuração do banco de dados está disponível no seguinte repositório de códigos da plataforma Github: \url{https://github.com/josehcls/tcc-configuracao}
+O arquivo de extensão \textit{sql} para configuração do banco de dados está disponível no seguinte repositório de códigos da plataforma Github: \url{https://github.com/josehcls/tcc-config}
 
 
 \subsection{Camada de Negócio}
@@ -23,11 +23,22 @@ A Camada de Persistência foi rapidamente implementada instanciando-se um banco 
 
 \subsubsection{Servidores de Registro e Receitas}
 
-% começar pelo setup da informação
-% testes automatizados pra testar cadastros
+
+Após a configuração do Banco de Dados, foram implementados os componentes responsáveis por transacionar os registros de Usuários, Dispositivos, Receitas, Lotes e Perfis de Controle. 
+Os servidores de Registro (\url{https://github.com/josehcls/tcc-register-service}) e Receitas (\url{https://github.com/josehcls/tcc-recipe-service}) foram implementados na linguagem Java e realizam as funções básicas de transação de dados: listagem, criação, atualização e deleção. 
+
+
+O framework Spring foi utilizado para prover uma interface de programação REST, que serve de ponto de comunicação com o Servidor de Aplicação, ou API Gateway do projeto. Os servidores recebem solicitações de transação por meio dessa interface, realizam validações de consistências de dados e realizam as operações conectando-se diretamente ao Banco de Dados. Para validar as operações, foram criados testes automatizados durante o desenvolvimento, que podem ser executados para verificar a eficácia de cada um dos métodos implementados.
+
+
+Após a implementação e testes, foi confecionado um arquivo Dockerfile responsável por configurar a geração de um container Docker a partir do pacote em extensão \textit{jar} resultado da compilação de cada um dos componentes.
+Esse container é utilizado para simplificar e otimizar a implantação desses componentes, de forma que seja fácil e rápido provisionar uma instância do serviço sempre que necessário.
+
 
 \subsubsection{Servidor de Processamento}
 
+
+\subsection{Camada de Aplicaçáo} 
 % app para juntar serviços
 
 \subsection{Interface Web}
