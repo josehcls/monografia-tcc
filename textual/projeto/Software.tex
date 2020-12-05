@@ -208,6 +208,20 @@ A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os servi
     \label{fig:diagrama_componentes}
 \end{figure}
 
+
+\subsection{Fluxo de Interação Interface Web}
+
+
+Seguindo o mapeamento de interações do usuário com o sistema definido pelos casos de uso apresentados, foi projetado o diagrama da figura \ref{fig:fluxo_interface} contendo as telas previstas para a Interface Web e o fluxo de interação entre as telas esperado. No diagrama, os blocos simbolizam as telas da interface, enquanto as setas representam ações que levam de uma tela a outra, que podem ser botões (como um botão de "listar receitas") ou o resultado de uma operação (como o fim da operação de cadastrar um novo usuário).
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.0]{figuras/projeto/software/fluxo_interface.png}
+    \caption{Fluxo de telas e interações da Interface Web.}
+    \label{fig:fluxo_interface}
+\end{figure}
+
 \subsection{Definição de Tecnologias}
 
 As tecnologias a serem utilizadas na implementação implantação deste projeto foram definidas levando em consideração sua adequação e familiaridade dos autores. Dessa forma, para implementação dos microsserviços que transacionam os dados, foi escolhida a linguagem de programação Java, sendo uma linguagem fortemente tipificada, é natural controlar o formato dos dados que devem ser salvos, simplificando validações de consistência. A biblioteca Spring Boot irá prover a API REST necessária. 
