@@ -27,6 +27,15 @@
 \usepackage[hyphens]{url}
 \usepackage[breaklinks=true, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black]{hyperref}
 
+% ========== Commands ==========
+\newcommand*{\captionsource}[2]{%
+  \caption[{#1}]{%
+    #1%
+    \\\hspace{\linewidth}%
+    Fonte: #2%
+  }%
+}
+
 % ========== Language options ==========
 \usepackage[brazil]{babel}
 %\usepackage[english]{babel}
