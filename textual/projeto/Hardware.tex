@@ -13,7 +13,7 @@ O microcontrolador Wemos D1 (figura \ref{fig:wemos}) é versátil, muito semelha
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.40]{figuras/projeto/hardware/wemos_d1.png}
-    \caption{Wemos D1}
+    \captionsource{Wemos D1}{http://www.esp8266learning.com/}
     \label{fig:wemos}
 \end{figure}
 
@@ -45,7 +45,7 @@ Ficha técnica:
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.40]{figuras/projeto/hardware/ds18b20.jpg}
-    \caption{Sensor DS18B20}
+    \captionsource{Sensor DS18B20}{https://escapequotes.net/}
     \label{fig:ds18b20}
 \end{figure}
 
@@ -102,21 +102,21 @@ Seguindo a especificação do requisito HW-F-3, o sistema deve ser capaz de medi
 Para obter a precisão de 1 milésimo de densidade relativa, o sensor necessita de uma precisão de aproximadamente 0,1\%.
 
 
-A partir das especificações, foram buscados os sensores disponíveis no mercado, principalmente os produzidos pela Mouser Electronics (https://br.mouser.com/). Seguindo os critérios definidos, o modelo escolhido foi o MPXV7002DP (Figura \ref{fig:MPXV7002DP}), que possui as seguintes especificações:
+A partir das especificações, foram buscados os sensores disponíveis no mercado, principalmente os produzidos pela Mouser Electronics (https://br.mouser.com/). Seguindo os critérios definidos, o modelo escolhido foi o MP3V5010DP, que é oferecido no chio Pmod DPG1 pela Diligent (Figura \ref{fig:Pmod_DPG1}), que possui as seguintes especificações:
 
 \begin{itemize}
-\item Faixa de medição: -0.3 a +0.3 psi
-\item Precisão: 2,5\%
-\item Tensão de alimentação: 5V
+\item Faixa de medição: 0 a 10 kPa
+\item Precisão: 5\%
+\item Tensão de alimentação: 3.3V
 \end{itemize}
 
 Apesar do sensor não apresentar uma precisão adequada, acreditamos que o uso da média de diversas medidas e calibração com algumas medidas feitas pelo usuário podem propiciar resultados satisfatórios.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.35]{figuras/projeto/hardware/MPXV7002DP.jpg}
-    \caption{Sensor de diferença de pressão MPXV7002DP}
-    \label{fig:MPXV7002DP}
+    \includegraphics[scale=0.25]{figuras/projeto/hardware/DPG1.png}
+    \captionsource{Sensor de diferença de pressão MP3V5010DP acoplado ao chip Pmod DPG1}{https://store.digilentinc.com/}
+    \label{fig:Pmod_DPG1}
 \end{figure}
 
 
@@ -139,7 +139,7 @@ As duas forças atuam em sentidos opostos (como ilustrado na figura a seguir), d
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figuras/projeto/hardware/empuxo.PNG}
-    \caption{Representação de um corpo (azul) submerso em um fluido (amarelo) e das forças gravitacional e de empuxo}
+    \captionsource{Representação de um corpo (azul) submerso em um fluido (amarelo) e das forças gravitacional e de empuxo}{Autores}
     \label{fig:empuxo}
 \end{figure}
 
@@ -149,7 +149,7 @@ Considerando um corpo de massa 250g e volume de 125cm³ arbitrários, e a varia�
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.40]{figuras/projeto/hardware/ZHIPU-200g.jpg}
-    \caption{Sensor de carga ZHIPU-200g}
+    \captionsource{Sensor de carga ZHIPU-200g}{https://mercadolivre.com.br/}
     \label{fig:ZHIPU-200g}
 \end{figure}
 
@@ -171,7 +171,7 @@ Ficha técnica:
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.15]{figuras/projeto/hardware/E-201-C.jpg}
-    \caption{Sensor de pH E-201-C}
+    \captionsource{Sensor de pH E-201-C}{https://www.crcibernetica.com/}
     \label{fig:E-201-C}
 \end{figure}
 
@@ -187,14 +187,14 @@ A célula é constituída por duas chapas de material isolante com um material c
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.20]{figuras/projeto/hardware/pastilha_peltier.jpeg}
-    \caption{Célula de Peltier modelo TEC1-12796.}
+    \captionsource{Célula de Peltier modelo TEC1-12706.}{https://mercadolivre.com.br/}
     \label{fig:peltier}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.60]{figuras/projeto/hardware/peltier.png}
-    \caption{Esquema de funcionamento de uma célula de Peltier.}
+    \captionsource{Esquema de funcionamento de uma célula de Peltier.}{https://pt.wikipedia.org/}
     \label{fig:esquema_peltier}
 \end{figure}
 
@@ -205,7 +205,7 @@ Um exemplo de aplicação comercial das células de Peltier para controle da tem
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.20]{figuras/projeto/controle/cooler.png}
-    \caption{Dissipador de calor e ventoinha, modelo utilizado em CPU.}
+    \captionsource{Dissipador de calor e ventoinha, modelo utilizado em CPU.}{https://www.hexus.net/}
     \label{fig:cooler}
 \end{figure}
 
@@ -213,11 +213,10 @@ Um exemplo de aplicação comercial das células de Peltier para controle da tem
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.30]{figuras/projeto/controle/haste.png}
-    \caption{Haste de Aço inoxidável.}
+    \captionsource{Haste de Aço inoxidável.}{https://mercadolivre.com.br/}
     \label{fig:haste_inox}
 \end{figure}
 
 Uma alternativa, ainda se utilizando a célula de Peltier, é realizar a troca de calor com a solução pela parede do fermentador, de forma menos invasiva e com menores riscos de contaminação, mas gerando uma dependência maior à geometria e material do fermentador. Uma alternativa seria utilizar a células em contato próximo à parede do fermentador; e a construção de um pequeno sistema que utilize um fluido circulando por serpentinas em torno ao fermentador, com as células atuando a temperatura do fluido.
 
-% // TODO: Projeto de Montagem
 % // TODO: Diagrama do Circuito
