@@ -1,7 +1,5 @@
 \section{Projeto de Software}
 
-% // TODO: Citar UML - Eduardo Bezerra
-
 A partir dos Requisitos Técnicos levantados, foi realizado o projeto de software. O projeto se iniciou com a definição de casos de uso a serem implementados, de forma a satisfazer os requisitos técnicos, em conjunto o diagrama de casos de uso definido pela UML foi elaborado para prover apresentação visual. Em seguida, as informações que devem ser armazenadas pelo sistema foram levantadas e a relação entre elas foi estabelecida, sendo representada no diagrama de entidade-relacionamento. O passo seguinte foi a definição da arquitetura de software do sistema.
 
 
@@ -10,9 +8,8 @@ Foram seguidos os padrões da UML apresentados por \citeonline{UML}, tentando-se
 
 No projeto a arquitetura de microsserviços foi escolhida como padrão para o sistema. Essa arquitetura define padrões de modularização do sistema em componentes pequenos e altamente especializados, conferindo facilidades de manutenção e escalabilidade em contraste com a arquitetura de monólito. Em contrapartida, o sistema é mais complexo de se implementar e implantar, devido a separação dos módulos, contudo, considerando o desejo de continuar este projeto após a entrega e os padrões de mercado atuais a abordagem de microsserviços é considerada a mais adequada. 
 
-Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
 
-% // TODO: Adicionalmente, foram desenhados protótipos das interfaces que o usuário tem contato, e estão disponibilizadas no Apêndice \ref{appendice:prototipos}
+Definida a arquitetura, cada módulo do sistema foi especificado e foi elaborado o diagrama de componentes, definido pela UML, para ilustrar os pontos de comunicação e componentização da solução completa. Nessa etapa foram definidas as tecnologias a serem empregadas em cada módulo, a justificativa das escolhas é apresentada após o detalhamento dos componentes da arquitetura de software. O projeto de implantação foi então realizado, com planejamento da disponibilização do sistema de software com ferramentas de computação de nuvem disponíveis no mercado.
 
 \subsection{Especificação dos Casos de Uso}
 
@@ -99,7 +96,7 @@ Requisitos relacionados: SW-F-2, SW-F-3, SW-F-8, SW-F-11
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.45]{figuras/projeto/software/diagrama_casos_de_uso.png}
-    \caption{Diagrama de Casos de Uso.}
+    \captionsource{Diagrama de Casos de Uso.}{Autores}
     \label{fig:diagrama_caso_de_usos}
 \end{figure}
 
@@ -120,7 +117,7 @@ A definição das entidades e seus relacionamentos é ilustrada pelo Diagrama En
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.16]{figuras/projeto/software/banco_de_dados.png}
-    \caption{Diagrama de Entidade-Relacionamento.}
+    \captionsource{Diagrama de Entidade-Relacionamento.}{Autores}
     \label{fig:diagrama_entidade_relacionamento}
 \end{figure}
 
@@ -134,7 +131,7 @@ A Camada de Interface (figura \ref{fig:camada_interface}) contém os componentes
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_interface.PNG}
-    \caption{Camada de Interface.}
+    \captionsource{Camada de Interface.}{Autores}
     \label{fig:camada_interface}
 \end{figure}
 
@@ -151,7 +148,7 @@ Toda a comunicação entre os atores e o sistema é realizada por mediação da 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_intermediaria.PNG}
-    \caption{Camada Intermediária.}
+    \captionsource{Camada Intermediária.}{Autores}
     \label{fig:camada_intermediaria}
 \end{figure}
 
@@ -168,7 +165,7 @@ O Servidor de Registro (figura \ref{fig:camada_negocios_registro}) comporta os S
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios_registro.PNG}
-    \caption{Camada de Negócio - Servidor de Registros.}
+    \captionsource{Camada de Negócio - Servidor de Registros.}{Autores}
     \label{fig:camada_negocios_registro}
 \end{figure}
 
@@ -177,7 +174,7 @@ Os Serviços de Controle, Receitas e Lotes também exercem a responsabilidade so
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios_receita.PNG}
-    \caption{Camada de Negócio - Servidor de Receitas.}
+    \captionsource{Camada de Negócio - Servidor de Receitas.}{Autores}
     \label{fig:camada_negocios_receita}
 \end{figure}
 
@@ -186,7 +183,7 @@ A figura \ref{fig:camada_negocios} ilustra os demais serviços da Camada de Neg�
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_negocios.PNG}
-    \caption{Camada de Negócio - Servidores de Análises, Processamento e Autenticação.}
+    \captionsource{Camada de Negócio - Servidores de Análises, Processamento e Autenticação.}{Autores}
     \label{fig:camada_negocios}
 \end{figure}
 
@@ -197,14 +194,14 @@ A Camada de Persistência (figura \ref{fig:camada_persistencia}) abriga os servi
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.50]{figuras/projeto/software/camada_persistencia.PNG}
-    \caption{Camada de Persistência.}
+    \captionsource{Camada de Persistência.}{Autores}
     \label{fig:camada_persistencia}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.50, angle=270]{figuras/projeto/software/diagrama_componentes.png}
-    \caption{Diagrama de Componentes.}
+    \captionsource{Diagrama de Componentes.}{Autores}
     \label{fig:diagrama_componentes}
 \end{figure}
 
@@ -218,7 +215,7 @@ Seguindo o mapeamento de interações do usuário com o sistema definido pelos c
 \begin{figure}[H]
     \centering
     \includegraphics[scale=1.0]{figuras/projeto/software/fluxo_interface.png}
-    \caption{Fluxo de telas e interações da Interface Web.}
+    \captionsource{Fluxo de telas e interações da Interface Web.}{Autores}
     \label{fig:fluxo_interface}
 \end{figure}
 
@@ -236,7 +233,4 @@ Para desenvolvimento da interface da Aplicação Web optou-se pela utilização 
 Todos os dados do sistema serão armazenados no banco de dados relacional PostgreSQL. Como o projeto prevê diversos componentes, torna-se vantajosa a utilização de tecnologia de conteinerização de aplicações, nesse caso, será utilizada a tecnologia Docker que permite definir programatizar a implantação dos vários componentes do sistema, através de arquivos de configuração, tornando a tarefa de disponibilização dos serviços mais rápida e escalável.
 
 
-
-% // TODO: Escrever Fluxos de Telas
 % // TODO: Escrever Fluxos Alocação de Dispositivo
-
