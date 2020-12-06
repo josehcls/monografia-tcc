@@ -4,20 +4,12 @@
 
 O primeiro passo para a implementação do controle de temperatura da fermentação é a modelagem térmica do processo. Nota-se que essa modelagem é bastante complexa pois envolve diversos coeficientes térmicos desconhecidos, devido a composição heterogênea do Mosto com Leveduras. 
 
+O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador será embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente.
 
 A fermentação ocorre na maior  parte das receitas em temperaturas de 14°C até 20°C,  temperaturas muitas vezes inferiores à temperatura do ambiente. Sendo assim, existe a necessidade de criar um sistema que troque calor com o mosto e leveduras mantendo um gradiente de temperatura entre o fermentador e o ambiente constante conforme configuração do usuário. 
 
-
 Para isso acontecer durante o processo, o calor retirado pela refrigeração deve ser o mesmo que o gerado pela convecção com o ambiente e pelo próprio processo de fermentação, que é exotérmico. 
 
-
-É possível dividir essa modelagem em três partes:  
-\begin{enumerate}
-    \item Determinação da quantidade de calor trocada pelo fermentador e o ambiente.
-    \item Determinação da quantidade de calor ganha no processo de fermentação.
-    \item Projeto e modelagem do dispositivo de troca de calor.
-\end{enumerate}
-    
 
 É importante destacar que o dispositivo irá ter duas funções: a primeira será manter a temperatura do líquido fermentado; a segunda será levar o líquido até determinada temperatura. Ambas as funcionalidades envolvem a capacidade do dispositivo de retirar ou fornecer calor do sistema de forma eficiente e constante. 
 
@@ -32,15 +24,20 @@ Nessa modelagem, serão analisados os seguintes elementos:
 \end{itemize}
 
 Nessa dinâmica, considerando que o fermentador vai operar na maior parte do tempo em temperaturas inferiores às do ambiente, o calor vai fazer o seguinte caminho:
+\begin{enumerate}
+    \item A manta térmica recebe calor do ambiente através da convecção e radiação do ar. 
+    \item A manta térmica transfere calor por condução para o fermentador. 
+    \item O fermentador transfere calor por condução para o líquido fermentado. 
+    \item O líquido fermentado produz calor pelo processo de fermentação (processo exotérmico).
+\end{enumerate}
 
 \begin{center}
     \(Ambiente \longrightarrow Manta\;t\acute{e}rmica \longrightarrow Fermentador \longrightarrow Mosto\;e\;leveduras\)
 \end{center}
+
+
+
     
-
-Sendo assim, é possível obter o calor ganho por convecção para cada 1°C de diferença de temperatura entre o fermentador e o ambiente
-
-
 Algumas hipóteses foram adotadas visando simplificar o problema: 
 
 \begin{enumerate}
@@ -62,168 +59,6 @@ As hipóteses 1, 2, 3  podem ser adotadas devido ao horizonte de tempo da fermen
     \label{fig:fermentador_controle}
 \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.40]{figuras/projeto/controle/fermentador_circuito.png}
-    \captionsource{Circuito elétrico equivalente ao problema de troca de calor entre ambiente e fermentador.}{Autores}
-    \label{fig:fermentador_circuito}
-\end{figure}
-
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{ |c|c| } 
-            \hline
-            Símbolo   &  Descrição  \\
-            \hline
-            \(r_1\)   &  raio do fermentador  \\
-            \hline
-            \(e_m\) &  espessura da manta \\
-            \hline
-            \(r_2\)   &  em + r1   \\
-            \hline
-            \(T_1\)  &  temperatura desejada para a fermentação, \\
-            \hline
-            \(T_{ar}\) &  temperatura ambiente  \\
-            \hline
-            \(L\)    &  Altura do fermentador  \\
-            \hline
-            \(h_1\)  &  coeficiente de transferência térmica do Mosto + Leveduras  \\
-            \hline
-            \(h_{ar}\) &  coeficiente de transferência térmica do ar \\
-            \hline
-            \(K_a\) & Condutividade térmica da manta  \\
-            \hline
-            \(q_{conv}\) & quantidade de calor perdida por convecção (J/kg) \\
-            \hline
-        \end{tabular}
-        \caption{\label{tab:variaveis_circuito}Descrição das variáveis do circuito elétrico equivalente da figura \ref{fig:fermentador_circuito}.}
-    \end{center}
-\end{table}
-
-Sendo:
-
-\begin{equation}
-    q = \dfrac{T_1 - T_2}{R_{12}}
-\end{equation}
-
-
-A equação \ref{eq:circuito} define a quantidade de calor recebida pelo mosto e leveduras devido a convecção natural:  
-
-
-\begin{equation}
-    q_{conv} = (T_{ar} - T_1) \cdot (2 \pi L) \cdot (\dfrac{h_1 \cdot h_{ar} \cdot K_a \cdot r_2 \cdot r_1}{k_a \cdot h_{ar} \cdot r_2 + \ln(r_2/r_1) \cdot h_1 \cdot h_{ar} \cdot r_2 \cdot r_1 + h_1 \cdot k_a \cdot r_1})
-    \label{eq:circuito}
-\end{equation}
-
-\subsection{Geração de Calor na Fermentação}
-
-O processo de fermentação é exotérmico, logo existe a produção de calor. Segundo Munroe (\citeonline{FermentationMunroe}), é estimada a produção de 585,76 kJ por Kg de mosto. Como a maior parte do calor é gerado durante a fase de crescimento exponencial da fermentação, que acontece durante os 4 primeiros dias, é estimada a troca de \(\dfrac{587,76 \cdot 10^3}{(4 \cdot 24 \cdot 60 \cdot 60)} = 1,7 W\) por kg de mosto durante os 4 primeiros dias de fermentação.   
-
-\subsection{Dispositivo para Troca de Calor}
-
-Um dos maiores desafios do projeto é criar um sistema que consiga trocar calor de forma eficiente, não seja intrusivo e consiga ser simples o suficiente para ser utilizado por um hobbysta. Conforme anteriormente especificado, a ideia é utilizar placas de peltier para realizar essa troca. A maior vantagem do uso dessas placas é a possibilidade de controlar o calor associado proporcionalmente a quantidade de corrente fornecida ao módulo, através da seguinte equação \ref{eq:qp}. Possibilitando assim o uso de um circuito junto com o microcontrolador para o controle de temperatura.
-
-\begin{equation}
-    Q_P = \pi \cdot 1
-    \label{eq:qp}
-\end{equation}
-
-
-\subsection{Controle de Temperatura}
-
-Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
-
-\subsubsection{Controlador PID}
-
-O controlador PID utiliza 3 ações (proporcional, integrativa e derivativa) controlar a planta minimizando o erro. Sua saída pode ser definida pela equação \ref{eq:pid}. A figura \ref{fig:pid} esquematiza a malha de controle.
-
-\begin{equation}
-    u(t) = K_pe(t) + K_i  \int_{0}^{t} e(\tau) \, d\tau + K_d\dfrac{de(t)}{\, dt}
-    \label{eq:pid}
-\end{equation}
-
-Na qual:
-
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{ |c|c| } 
-            \hline
-            Símbolo   &  Descrição  \\
-            \hline
-            \(K_p\)   &  ganho proporcional  \\
-            \hline
-            \(K_i\)   &  ganho integrativo  \\
-            \hline
-            \(K_d\)   &  ganho derivativo  \\
-            \hline
-            \(e\)   &  erro  \\
-            \hline
-            \(t\)   &  tempo  \\
-            \hline
-            \(\tau\)   &  tempo de integração \\
-            \hline
-        \end{tabular}
-        \caption{\label{tab:variaveis_pid}Descrição das variáveis do controlador PID da Equação \ref{eq:pid}.}
-    \end{center}
-\end{table}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.60]{figuras/implementacao/hardware/pid.jpg}
-    \caption{Malha de controle PID.}
-    \label{fig:pid}
-\end{figure}
-
-
-A ação proporcional do controlador produz um sinal de saída proporcional à amplitude do erro $e(t)$. Essa ação é útil para criar uma resposta equivalente ao tamanho do erro do sistema. A ação integral produz um sinal de saída proporcional à magnitude do erro, dependendo não só do seu valor, mas também da sua duração. Essa ação corrige o erro de off-set gerado pela ação proporcional e acelera a resposta do sistema. Por fim, a ação derivativa produz um sinal de saída proporcional à velocidade de variação do erro. Essa ação melhora a estabilidade e velocidade de resposta do sistema através de uma correção antecipada do erro. 
-
-
-\subsubsection{Método de Ziegler-Nichols}
-
-
-Para escolha dos parâmetros de ganho, o método de Ziegler-Nichols foi utilizado. Esse método foi escolhido principalmente pela sua simplicidade e facilidade na sintonização, visto que não é necessário uma modelagem matemática precisa da planta para o seu ajuste. 
-A escolha dos parâmetros é feita a partir da observação da resposta do sistema em malha aberta com a aplicação de um degrau. A figura \ref{fig:resposta_sistema} ilustra a curva de resposta do sistema, e a tabela \ref{tab:parametros_ziegler} lista os parâmetros provenientes do método.
-
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.45]{figuras/implementacao/hardware/resposta.png}
-    \caption{Responda do Sistema em malha aberta a sinal degrau.}
-    \label{fig:resposta_sistema}
-\end{figure}
-
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{ |c|c|c|c| } 
-            \hline
-            Controlador & \(K_p\) & \(T_I\) & \(T_D\) \\
-            \hline
-            \(P\) & \(1/\alpha\) &  & \\
-            \hline
-            \(P + I\) & \(0,9/\alpha\) & \(3L\) & \\
-            \hline
-            \(P + I + D\) & \(1,2/\alpha\) & \(2L\) & \(0,5L\) \\
-            \hline
-        \end{tabular}
-        \caption{\label{tab:parametros_ziegler} Parâmetros do controlador PID seguindo método de Ziegler-Nichols.}
-    \end{center}
-\end{table}
-
-
-\subsubsection{Anti Wind-up}
-
-Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida será congelar a ação do controlador em caso de saturação.  
-
-\subsubsection{Características do Sistema}
-
-O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador será embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente, as seguintes trocas térmicas ocorrem no sistema. 
-
-\begin{enumerate}
-    \item A manta térmica recebe calor do ambiente através da convecção e radiação do ar. 
-    \item A manta térmica transfere calor por condução para o fermentador. 
-    \item O fermentador transfere calor por condução para o líquido fermentado. 
-    \item O líquido fermentado produz calor pelo processo de fermentação (processo exotérmico).
-\end{enumerate}
 
 
 \subsection{Simulação Térmica}
@@ -389,3 +224,99 @@ Observando o sistema, conclui-se que o tempo necessário para mover o sistema do
     \captionsource{Curva de quantidade de calor em Watts por tempo em dezenas de milhares de segundos, obtida da simulação do circuito térmico da figura.}{Autores}
     \label{fig:curva_q}
 \end{figure}
+
+\subsection{Dispositivo para Troca de Calor}
+
+Um dos maiores desafios do projeto é criar um sistema que consiga trocar calor de forma eficiente, não seja intrusivo e consiga ser simples o suficiente para ser utilizado por um hobbysta. Conforme anteriormente especificado, a ideia é utilizar placas de peltier para realizar essa troca. A maior vantagem do uso dessas placas é a possibilidade de controlar o calor associado proporcionalmente a quantidade de corrente fornecida ao módulo, através da seguinte equação \ref{eq:qp}. Possibilitando assim o uso de um circuito junto com o microcontrolador para o controle de temperatura.
+
+\begin{equation}
+    Q_P = \pi \cdot 1
+    \label{eq:qp}
+\end{equation}
+
+
+\subsection{Controle de Temperatura}
+
+Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
+
+\subsubsection{Controlador PID}
+
+O controlador PID utiliza 3 ações (proporcional, integrativa e derivativa) controlar a planta minimizando o erro. Sua saída pode ser definida pela equação \ref{eq:pid}. A figura \ref{fig:pid} esquematiza a malha de controle.
+
+\begin{equation}
+    u(t) = K_pe(t) + K_i  \int_{0}^{t} e(\tau) \, d\tau + K_d\dfrac{de(t)}{\, dt}
+    \label{eq:pid}
+\end{equation}
+
+Na qual:
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{ |c|c| } 
+            \hline
+            Símbolo   &  Descrição  \\
+            \hline
+            \(K_p\)   &  ganho proporcional  \\
+            \hline
+            \(K_i\)   &  ganho integrativo  \\
+            \hline
+            \(K_d\)   &  ganho derivativo  \\
+            \hline
+            \(e\)   &  erro  \\
+            \hline
+            \(t\)   &  tempo  \\
+            \hline
+            \(\tau\)   &  tempo de integração \\
+            \hline
+        \end{tabular}
+        \caption{\label{tab:variaveis_pid}Descrição das variáveis do controlador PID da Equação \ref{eq:pid}.}
+    \end{center}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.60]{figuras/implementacao/hardware/pid.jpg}
+    \caption{Malha de controle PID.}
+    \label{fig:pid}
+\end{figure}
+
+
+A ação proporcional do controlador produz um sinal de saída proporcional à amplitude do erro $e(t)$. Essa ação é útil para criar uma resposta equivalente ao tamanho do erro do sistema. A ação integral produz um sinal de saída proporcional à magnitude do erro, dependendo não só do seu valor, mas também da sua duração. Essa ação corrige o erro de off-set gerado pela ação proporcional e acelera a resposta do sistema. Por fim, a ação derivativa produz um sinal de saída proporcional à velocidade de variação do erro. Essa ação melhora a estabilidade e velocidade de resposta do sistema através de uma correção antecipada do erro. 
+
+
+\subsubsection{Método de Ziegler-Nichols}
+
+
+Para escolha dos parâmetros de ganho, o método de Ziegler-Nichols foi utilizado. Esse método foi escolhido principalmente pela sua simplicidade e facilidade na sintonização, visto que não é necessário uma modelagem matemática precisa da planta para o seu ajuste. 
+A escolha dos parâmetros é feita a partir da observação da resposta do sistema em malha aberta com a aplicação de um degrau. A figura \ref{fig:resposta_sistema} ilustra a curva de resposta do sistema, e a tabela \ref{tab:parametros_ziegler} lista os parâmetros provenientes do método.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{figuras/implementacao/hardware/resposta.png}
+    \caption{Responda do Sistema em malha aberta a sinal degrau.}
+    \label{fig:resposta_sistema}
+\end{figure}
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{ |c|c|c|c| } 
+            \hline
+            Controlador & \(K_p\) & \(T_I\) & \(T_D\) \\
+            \hline
+            \(P\) & \(1/\alpha\) &  & \\
+            \hline
+            \(P + I\) & \(0,9/\alpha\) & \(3L\) & \\
+            \hline
+            \(P + I + D\) & \(1,2/\alpha\) & \(2L\) & \(0,5L\) \\
+            \hline
+        \end{tabular}
+        \caption{\label{tab:parametros_ziegler} Parâmetros do controlador PID seguindo método de Ziegler-Nichols.}
+    \end{center}
+\end{table}
+
+
+\subsubsection{Anti Wind-up}
+
+Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida será congelar a ação do controlador em caso de saturação.  
+
