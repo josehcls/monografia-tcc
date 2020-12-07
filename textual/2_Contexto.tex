@@ -61,10 +61,9 @@ cascas dos grãos auxiliam essa etapa formando um filtro natural, mas também po
 interrompida e a solução é esterilizada. Nessa etapa, lúpulos são adicionados em diferentes
 momentos da fervura, fornecendo extratos que conferem amargor e aroma à cerveja;
     \item Fermentação: após o resfriamento do mosto, leveduras são adicionadas e a solução é aerada. 
-Os açúcares são consumidos pelo metabolismo das leveduras, gerando etanol e dióxido de carbono, e alguns subprodutos;
+Os açúcares são consumidos pelo metabolismo das leveduras, gerando etanol e dióxido de carbono;
     \item Maturação: após o consumo dos açúcares, as leveduras passam a reabsorver parte dos
-subprodutos da fermentação, melhorando a qualidade da bebida. Ao final do processo, as leveduras floculam e decantam, podendo
-ser facilmente extraídas e reaproveitadas;
+subprodutos gerados durante a fermentação, melhorando a qualidade geral da bebida. Ao final do processo, as leveduras floculam e decantam, podendo ser extraídas e reaproveitadas;
     \item Envase: transferência para o recipiente final. Nessa etapa, também é
 realizada a carbonatação da bebida, geralmente por injeção de gás carbônico
 ou por meio de uma segunda fermentação, aproveitando-se leveduras ainda presentes na solução.
@@ -76,34 +75,25 @@ envase.
 
 % // TODO: Melhorar Fermentação e Maturação
 
-Segundo descrito por \citeonline{YeastWhite}, as primeiras produções de
-cervejas datam de milhares de anos atrás, sendo que na maior parte da história a
-fermentação de bebidas foi tida como um fenômeno divino, sem o conhecimento dos
-organismos microscópicos que a realiza. Estes só puderam ser observados em 1680
-com o desenvolvimento e auxílio de microscópios. Ainda assim, apenas em 1789 a
-equação química da transformação de açúcares em álcool, dentre eles o etanol, e
-dióxido de carbono ($\mathrm{CO_2}$) foi descrita por Lavoisier, e na segunda metade do século
-XIX, com as descobertas de Pasteur, passaram a ser melhor entendidas, com o
-surgimento da bioquímica como uma área de estudo própria. 
+\citeonline{Kunze} posiciona a fermentação como o processo mais importante da produção de cervejas, sendo as etapas
+antecedentes responsáveis para garantir as condições necessárias para que as leveduras possam converter os açúcares,
+extraídos do malte e quebrados em moléculas menores pelas enzimas, em álcool e gás carbônico. As leveduras consomem 
+os açúcares para gerar energia e se reproduzirem, e nesse processo também geram centenas de subprodutos como ésteres, álcoois pesados e compostos sulfúricos que mesmo em pequena quantidade são essenciais para as características organolépticas da cerveja, como
+pontuam \citeonline{YeastWhite}.
 
+Leveduras são organismos unicelulares membros do reino fungi. Na produção de cervejas são utilizadas principalmente 
+duas espécies: a \textit{Saccharomyces cerevisie} (em cervejas do tipo \textit{Ale}) e a \textit{Saccharomyces pastorianus} (em cervejas do tipo \textit{Lager}). Ao serem inoculadas ao mosto, as leveduras rapidamente absorvem o oxigênio dissolvido para revitalizar sua membrana celular e iniciar a absorção dos açúcares e nutrientes do mosto. 
 
-Apesar da falta de conhecimento durante tantos anos, a fermentação é o processo
-que possui um dos maiores impactos no sabor, aroma, aparência e textura do
-produto. Sendo assim, o controle dessa etapa é essencial para garantir a
-qualidade final.  
+A partir do açúcar absorvido, a levedura pode convertê-lo em energia por meio da respiração aeróbica que ocorre na presença de oxigênio, ou pela respiração anaeróbica que ocorre na ausência de oxigênio ou em solução com alta concentração de glicose (pelo chamado efeito de Crabtree). 
+Além da produção energia no formato de moléculas de adenosina trifosfato (ATP), a respiração anaeróbica também produz etanol e gás carbônico, por isso também é denominada de fermentação alcoólica; a equação \ref{eq:fermentacao} ilustra essa reação. A molécula de ATP provém energia para a síntese de proteínas e replicação de DNA, necessários para a multiplicação celular.
 
+\begin{equation}
+    Glicose + 2 ADP + 2 Fosfato \longrightarrow 2 Etanol + 2 CO_2 + 2 ATP
+    \label{eq:fermentacao}
+\end{equation}
 
-A fermentação, na produção de cervejas, é um processo metabólico realizado pelas
-leveduras adicionadas ao mosto com a finalidade principal de converter os açúcares
-extraídos dos grãos maltados no processo de brassagem em etanol. As leveduras,
-fungos unicelulares, realizam a fermentação como uma forma de
-respiração anaeróbia para obterem energia em meios desprovidos de oxigênio ou
-com grande excesso de açúcares disponíveis. Além da geração de etanol e gás
-carbônico, há diversos subprodutos, como ésteres, álcoois superiores e compostos
-sulfúricos que caracterizam o produto e definem sua qualidade final. 
-
-
-O processo de fermentação pode ser dividido em 3 fases:  
+A etapa de fermentação e maturação de uma cerveja leva em média entre 7 e 14 dias, desde a inoculação das leveduras até a cerveja estar pronta para envase. Vale notar que podem ser aplicados processos extras na maturação que prolonguem esse tempo.
+Para uma fermentação básica, \citeonline{YeastWhite} classificam o processo em 3 fases, que ocorrem com certo grau de sobreposição:
 \begin{enumerate}
     \item Fase de retardamento, durante as primeiras quatro a 15 horas após a adição
 da levedura no mosto, caracterizada pela climatização das células ao
@@ -111,23 +101,33 @@ ambiente e preparação para a próxima fase;
     \item Fase de crescimento exponencial, que dura entre quatro horas e quatro dias,
 quando ocorre o consumo dos açúcares e replicação logarítmica das células
 de leveduras;
-    \item Fase estacionária, em que o crescimento diminui e alguns compostos são
-absorvidos pelas células, maturando o produto durante três a dez dias.
+    \item Fase estacionária, em que o crescimento diminui e alguns compostos, como o diacetil, são
+absorvidos pelas leveduras, maturando o produto durante três a dez dias.
 \end{enumerate}
 
+A variação nas durações das etapas é decorrente tanto da quantidade e saúde das leveduras inoculadas, quanto da temperatura 
+durante a fermentação. Tradicionalmente, cervejas do tipo \textit{Ale} são fermentadas a 20°C e cervejas do tipo 
+\textit{Lager} a 10°C. Temperaturas inferiores tornam o processo mais lento, e em casos extremos culminar na parada do processo, impedindo a fermentação completa ou que os subprodutos como o diacetil seja absorvido pelas leveduras. temperaturas superiores aceleram a atividade celular, tornando o processo mais rápido, mas também podendo fazer com que as leveduras se multipliquem demais e gerem uma quantidade de subprodutos alta que pode impactar negativamente na qualidade da bebida, gerando sabores indesejados denominados \textit{off-flavors}.
 
-Para a obtenção de resultados consistentes em testes e na produção de cervejas, é
-essencial que a fermentação seja monitorada e controlada de forma que ocorra em
-condições ideais. As principais variáveis monitoradas no processo, em ordem de
-importância são: a temperatura, que impacta diretamente no grau de atividade
-celular das leveduras, assim como na produção e reabsorção de subprodutos da
-fermentação; a densidade relativa (specific gravity, em inglês) do mosto em
-fermentação, que indica a evolução do processo, uma vez que ao longo do processo
-a densidade diminui, em caminho a um valor final esperado; o pH da solução,
-importante para a saúde da levedura e indicativo de possíveis problemas; e a
-concentração de oxigênio e gás carbônico dissolvidos. Munroe (\citeonline{FermentationMunroe}) fornece um
-perfil de evolução de algumas dessas variáveis na fermentação de uma cerveja do
-tipo Lager (Figura \ref{fig:variaveis_fermentacao}):
+Justamente por essa razão, o controle de temperatura durante a fermentação é essencial para a obtenção de um produto de 
+qualidade com resultados consistentes, principalmente nas primeiras 72 horas do processo, que representam o pico de multiplicação celular, geração de calor decorrente da atividade celular e produção de sub-produtos.
+
+Após a temperatura, a segunda variável mais importante para se monitorar é a densidade relativa do mosto 
+(\textit{specific gravity} em inglês) que indica o grau de evolução do processo. Como parte do gás carbônico produzido 
+na equação \ref{eq:fermentacao} é dissolvido e capturado pela atmosfera, a densidade do mosto diminui durante a fermentação à
+medida em que os açúcares vão sendo consumidos. A partir disso, é possível: identificar as etapas da fermentação pelo
+gráfico de evolução da densidade relativa ao longo do tempo; estimar a graduação alcoólica a partir dos valores inicial e 
+final da densidade relativa; e estipular o grau de atenuação, ou quanto dos açúcares foram consumidos pelas leveduras.
+
+Uma terceira variável relevante durante a fermentação é o pH, que sofre uma leve queda durante o processo, e pode ser 
+utilizado principalmente como uma amostra das condições iniciais da fermentação, com intuito de se obter reprodutividade do 
+processo, e também pode servir como uma variável de diagnóstico de problemas que podem ocorrer como não adaptação das 
+leveduras ao mosto e contaminação.
+
+Com caráter ilustrativo, é incluído gráfico com o perfil dessas e outras variáveis durante a fermentação de uma cerveja 
+do tipo \textit{Lager} (Figura \ref{fig:variaveis_fermentacao}). Na figura, \textit{specific gravity} se refere à
+densidade relativa do mosto, e \textit{cells in suspension} à quantidade de células de levedura em suspensão, vale notar que 
+ao final do processo, as leveduras floculam e decatam, por isso a queda.
 
 \begin{figure}[H]
     \centering
