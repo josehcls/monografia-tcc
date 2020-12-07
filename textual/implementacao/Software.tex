@@ -12,7 +12,7 @@ Os links de acesso para os repositórios de código fonte por componente são li
 \subsection{Camada de Persistência}
 
 
-A Camada de Persistência foi rapidamente implementada instanciando-se um banco de dados na nuvem da Amazon Web Services (AWS) pelo serviço RDS e executando o script de DDL (Data Definition Language) que foi gerado a partir do diagrama da figura \ref{fig:diagrama_entidade_relacionamento}. A plataforma utilizada para confecionar o diagrama (\url{https://dbdiagram.io/}) oferece o download do código de geração do banco de dados a partir do diagrama. Foram então realizadas algumas modificações no script gerado, para incluir a criação de índices e estabelecer o relacionamento entre as tabelas. O arquivo de extensão \textit{sql} para configuração do banco de dados está disponível no seguinte repositório de código: \url{https://github.com/josehcls/tcc-config}. O banco de dados foi provisionado pela plataforma de cloud computing AWS (Amazon Web Services)  
+A Camada de Persistência foi rapidamente implementada instanciando-se um banco de dados na nuvem da Amazon Web Services (AWS) pelo serviço RDS e executando o script de Data Definition Language (DDL) que foi gerado a partir do diagrama apresentado anteriormente na figura \ref{fig:diagrama_entidade_relacionamento}. A plataforma utilizada para confecionar o diagrama (\url{https://dbdiagram.io/}) oferece o download do código de geração do banco de dados a partir do diagrama. Foram então realizadas algumas modificações no script gerado, para incluir a criação de índices e estabelecer o relacionamento entre as tabelas. O arquivo de extensão \textit{sql} para configuração do banco de dados está disponível no seguinte repositório de código: \url{https://github.com/josehcls/tcc-config}. O banco de dados foi provisionado pela plataforma de cloud computing AWS (Amazon Web Services)  
 
 
 \subsection{Camada de Negócio}
@@ -60,7 +60,7 @@ O serviço foi desenvolvido utilizando a linguagem Python e o framework Flask pa
 \subsection{Interface Web}
 
 
-Seguindo o fluxo de interações da interface exposto na figura \ref{fig:fluxo_interface}, a Interface Web (\url{https://github.com/josehcls/tcc-front-end}) foi desenvolvida utilizando, principalmente, a biblioteca React para JavaScript. Com ajuda dessa e de outras ferramentas atuais, foi possível desenvolver uma plataforma simples e funcional com agilizada. O React, como outras ferramentas recentes, permite a abstração de boa parte da diagramação e funcionalidades de sites, o que simplifica em grande escala o desenvolvimento. Para a exibição de gráficos, foi utilizada a biblioteca Chart.js, que simplifica o processo de construção de gráficos como o da figura \ref{fig:grafico_chart} que compara a evolução de temperatura e densidade.
+Seguindo o fluxo de interações da interface exposto no capítulo de projeto pela figura \ref{fig:fluxo_interface}, a Interface Web (\url{https://github.com/josehcls/tcc-front-end}) foi desenvolvida utilizando, principalmente, a biblioteca React para JavaScript. Com ajuda dessa e de outras ferramentas atuais, foi possível desenvolver uma plataforma simples e funcional com agilizada. O React, como outras ferramentas recentes, permite a abstração de boa parte da diagramação e funcionalidades de sites, o que simplifica em grande escala o desenvolvimento. Para a exibição de gráficos, foi utilizada a biblioteca Chart.js, que simplifica o processo de construção de gráficos como o da figura \ref{fig:grafico_chart} que compara a evolução de temperatura e densidade.
 
 
 \begin{figure}[h]
@@ -74,7 +74,7 @@ Seguindo o fluxo de interações da interface exposto na figura \ref{fig:fluxo_i
 \subsection{Implantação}
 
 
-A partir dos containers que definidos por cada aplicação de backend, a implantação de todos os sistemas podem ser orquestrados em um único comando utilizando a ferramenta Docker Compose definindo uma aplicação multi-container. Existem hoje tecnologias mais robustas como o Kubernetes para fazer o provisionamento e monitoramento de vários containers, mas o Docker Compose foi escolhido pela sua simplicidade. Dessa forma, os serviços backend e o broker de mensagens MQTT são provisionados em uma máquina virtual oferecida pelo serviço de computação em nuvem AWS.o
+A partir dos containers que definidos por cada aplicação de backend, a implantação de todos os sistemas podem ser orquestrados em um único comando utilizando a ferramenta Docker Compose definindo uma aplicação multi-container. Existem hoje tecnologias mais robustas como o Kubernetes para fazer o provisionamento e monitoramento de vários containers, mas o Docker Compose foi escolhido pela sua simplicidade. Dessa forma, os serviços backend e o broker de mensagens MQTT são provisionados em uma máquina virtual oferecida pelo serviço de computação em nuvem AWS.
 
 
 A configuração dos serviços é feita de forma que apenas o broker e o Servidor de Aplicação estejam expostos a acesso externo, protegendo os demais serviços. Essa configuração pode ser conferida no arquivo \textit{docker-compose.yaml} no repositório de código: \url{https://github.com/josehcls/tcc-config}.

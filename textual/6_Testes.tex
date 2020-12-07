@@ -1,4 +1,35 @@
 \chapter{Testes e Avaliação do Protótipo}
 
-% // TODO: Escrever Testes e Avaliação do Protótipo
-\textcolor{red}{\{Comentários sobre o funcionamento do protótipo completo, como foi testado e resultados obtidos\}}
+O intuito original dos testes de validação era aferir o funcionamento do protótipo durante uma fermentação real, 
+realizada em pequena escala exclusivamente para avaliação desse projeto. Contudo, devido a atrasos no cronograma
+nas últimas etapas de montagem do protótipo e documentação, não foi possível preparar esse teste. Decorrente disso,
+o protótipo foi testado em situações não ideais, mas ainda assim relativamente semelhantes ao processo real, e os
+dados coletados foram observados na Interface Web e comparados com valores inferidos manualmente, 
+
+% \section{Avaliação do Hardware}
+
+Primeiramente foram testados os sensores do protótipo. Para o sensor de temperatura, utilizamos um recipiente com água
+comparando a temperatura lida em diferentes temperaturas com um termômetro analógico. Considerando a resolução da escala do
+termômetro analógico de 1°C e a resolução de duas casas decimais do sinal digital, todas as medidas feitas estavam de acordo
+e dentro da margem de erro. O sensor de pH foi validado após a calibração, usando as soluções tampão de pH 4, 7, e 10, com erro
+máximo obtido de 0,1 unidade de medição, o que é suficiente para a aplicação. 
+
+Por fim, o sensor de densidade foi testado em água,
+mantendo uma distância de 18 cm entre os dois pontos de medição, e comparado com o resultado de um densímetro analógico,
+obtendo um erro de aproximadamente 0,3\%, que foi bem abaixo do valor esperado, dado a acurácia nominal de 5\% do sensor, 
+seria interessante coletar mais medições com diferentes fluidos para melhor aferimento do erro do sensor. Caso o sensor apresentasse
+um resultado pouco confiável, ele poderia ser usado apenas para conferir uma noção qualitativa de evolução do processo pela 
+tendência de mudança da densidade, porém, ele aparenta ser adequado para cálculo de índices relevantes ao processo como 
+gradação alcoólica, eficiência e atenuação, que se baseiam nos valores de densidade relativa antes e depois da fermentação.
+
+O atuador de temperatura, composto pela pastilha de Peltier com o dissipador de calor e barra de aço inoxidável para troca de
+calor com o mosto foi também testado em água, utilizando um fermentador de plástico com capacidade de 20 litros. Foi montado
+um isolamento simples ao entorno do fermentador, utilizando poliestireno expandido (comumente denominado "isopor") e espuma
+vinílica acetinada (EVA). A partir da temperatura ambiente de aproximadamente 23°C, o atuador foi ligado em potência máxima
+para medir a potência real de retirada de calor do sistema, obtendo-se algo próximo de 0,3°C por hora, para resfriar os 20 litros
+de água. Acreditamos que esse desempenho é insuficiente, e que um melhor isolamento térmico e possíveis melhorias na montagem
+do sistema de troca de calor possam melhorá-lo. Contudo, não avançamos nesse aspecto.
+
+
+% \section{Avaliação do Software}
+
