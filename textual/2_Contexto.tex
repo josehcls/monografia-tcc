@@ -3,8 +3,8 @@
 Esse projeto tem natureza multidisciplinar, buscando harmonizar a bioquímica do
 processo de produção de cervejas com sistemas de controle e automação e
 geração e análise de dados estudados na Engenharia Elétrica. Em sua primeira
-parte, será estudado o funcionamento das leveduras e como o ambiente age sobre
-seu processo metabólico, enquanto na outra parte, são estudados sensores,
+parte, foi estudado o funcionamento das leveduras e como o ambiente age sobre
+seu processo metabólico, enquanto na outra parte, foram estudados sensores,
 atuadores e arquitetura de Internet das Coisas para captação, processamento e
 disponibilização de informações referente a ação dos microrganismos.
 
@@ -12,22 +12,19 @@ disponibilização de informações referente a ação dos microrganismos.
 
 % // TODO: Colocar fontes bibliográficas
 
-A cerveja pode ser considerada a bebida alcoólica mais antiga do mundo, e atualmente tem uma importância social e econômica muito grande. Durante anos, a sua produção ganhou diversas mudanças, melhorias e adaptações até chegar nas variedades de forma e sabor conhecidas atualmente. 
+% A cerveja pode ser considerada a bebida alcoólica mais antiga do mundo, e atualmente tem uma importância social e econômica muito grande. Durante anos, a sua produção ganhou diversas mudanças, melhorias e adaptações até chegar nas variedades de forma e sabor conhecidas atualmente. 
 
 
-A cerveja provavelmente teve origem na revolução agrícola, na qual os humanos começaram a abandonar o nomadismo e se estabeleceram em comunidades que cultivam diversos grãos. Com o armazenamento de cereais, é provável que essa origem tenha sido acidental, com uma fermentação espontânea da cevada. Os mais antigos registros dessa bebida podem ser encontrados na antiga região mesopotâmia, atual Irã, e são datados em 2800 a.C. A sua importância em comunidades antigas do oriente médio era tanta, que em 1760 a.C., foi criada a primeira lei que regulamenta a produção e venda de cerveja. A lei conhecida como Estela de Hamurabi regulamentou a comercialização, fabricação e consumo, estabelecendo uma ração diária de cerveja para os habitantes da região. 
+Segundo \citeonline{Kunze}, a cerveja provavelmente teve origem na revolução agrícola, na qual os humanos começaram a abandonar o nomadismo e se estabeleceram em comunidades que cultivam diversos grãos. Com o armazenamento de cereais, é provável que essa origem tenha sido acidental, com uma fermentação espontânea da cevada. Os mais antigos registros dessa bebida podem ser encontrados na antiga região mesopotâmia, atual Irã, e são datados em 2800 a.C. A sua importância em comunidades antigas do oriente médio era tanta, que em 1760 a.C., foi criada a primeira lei que regulamenta a produção e venda de cerveja. A lei conhecida como Estela de Hamurabi regulamentou a comercialização, fabricação e consumo, estabelecendo uma ração diária de cerveja para os habitantes da região. 
 
 
-Como o consumo da cerveja era mais seguro do que a água, visto que o processo de fervura ajuda a purificar a bebida. O  seu consumo em algumas sociedades era visto como uma necessidade básica diária. Esse fato ajudou a aumentar a popularidade da bebida na Europa durante a idade média, principalmente nas comunidades Germânicas. Uma das instituições mais importantes para o desenvolvimento dos processos de produção eram os mosteiros dessa região e época. Os monges eram responsáveis pela fabricação da bebida e como eram os únicos que reproduziam os manuscritos, puderam conservar e aperfeiçoar a sua produção, sendo muito influentes até hoje. Eles foram responsáveis por incluir diversas ervas na fabricação, sendo a mais importante delas o lúpulo, utilizado para trazer o amargor da bebida. 
+Como o consumo da cerveja era mais seguro do que a água, visto que o processo de fervura ajuda a purificar a bebida, seu consumo em algumas sociedades era visto como uma necessidade básica diária, continua \citeonline{Kunze}. Esse fato ajudou a aumentar a popularidade da bebida na Europa durante a idade média, principalmente nas comunidades Germânicas. Uma das instituições mais importantes para o desenvolvimento dos processos de produção eram os mosteiros dessa região e época. Os monges eram responsáveis pela fabricação da bebida e como eram os únicos que reproduziam os manuscritos, puderam conservar e aperfeiçoar a sua produção, sendo muito influentes até hoje. Eles foram responsáveis por incluir diversas ervas na fabricação, sendo a mais importante delas o lúpulo, utilizado para trazer o amargor da bebida. Uma das leis mais conhecidas e importantes da indústria cervejeira é a da pureza Alemã. Devido a diversas mudanças aplicadas pelos fabricantes e a percepção de uma queda de qualidade, essa lei foi criada no século XIV na região da Bavária (Sul da Alemanha) buscando uma padronização da bebida. A lei instituiu que a cerveja deveria ser fabricada apenas com os seguintes ingredientes: água, malte de cevada e lúpulo. Atualmente, apesar da legalização do uso de qualquer ingrediente na região, muitos cervejeiros ainda seguem essa restrição e ela é um sinônimo de qualidade. 
 
 
-Uma das leis mais conhecidas e importantes da indústria cervejeira é a da pureza Alemã. Devido a diversas mudanças aplicadas pelos fabricantes e a percepção de uma queda de qualidade, essa lei foi criada no século XIV na região da Bavária (Sul da Alemanha) buscando uma padronização da bebida. A lei instituiu que a cerveja deveria ser fabricada apenas com os seguintes ingredientes: água, malte de cevada e lúpulo. Atualmente, apesar da legalização do uso de qualquer ingrediente na região, muitos cervejeiros ainda seguem essa restrição e ela é um sinônimo de qualidade. 
+Ainda segundo \citeonline{Kunze}, uma das mais importantes inovações na fabricação foi a Pasteurização, que permite a preservação do gosto por mais tempo. O processo consiste, basicamente, no aquecimento da bebida a uma determinada temperatura, por determinado tempo, e depois a bebida é resfriada de forma a eliminar os microorganismos ali presentes. O processo foi nomeado pelo seu criador o francês Louis Pasteur que atendendo a solicitação de alguns dos vinicultores e cervejeiros da região que lhe pediram para descobrir como os vinhos e a cervejas azedaram. Durante sua investigação, através do uso de microscópio, ele pôde constatar que a levedura ocasionava este processo e assim criou esse processo de purificação. A partir dele, a indústria cervejeira conseguiu chegar em um novo nível e crescer em escala e alcance, sendo essencial para grandes fábricas atualmente. 
 
 
-Uma das mais importantes inovações na fabricação foi a Pasteurização, que permite a preservação do gosto por mais tempo. O processo consiste, basicamente, no aquecimento da bebida a uma determinada temperatura, por determinado tempo, e depois a bebida é resfriada de forma a eliminar os microorganismos ali presentes. O processo foi nomeado pelo seu criador o francês Louis Pasteur que atendendo a solicitação de alguns dos vinicultores e cervejeiros da região que lhe pediram para descobrir como os vinhos e a cervejas azedaram. Durante sua investigação, através do uso de microscópio, ele pôde constatar que a levedura ocasionava este processo e assim criou esse processo de purificação. A partir dele, a indústria cervejeira conseguiu chegar em um novo nível e crescer em escala e alcance, sendo essencial para grandes fábricas atualmente. 
-
-
-Atualmente, a indústria de cerveja movimenta milhões de dólares anualmente e uma das divisões que mais cresce são as microcervejarias. No Brasil começaram esses pequenos produtores começaram a surgir na década de 90. Em 2012 as cervejas especiais representavam 8\% do mercado nacional da bebida em 2012 e encerraram 2014 com uma participação de 11\%, segundo o Sindicato Nacional da Indústria da Cerveja, que aponta a existência de 300 microcervejarias no País. A projeção é de que essa cota suba para 20\% em 2020.
+% Atualmente, a indústria de cerveja movimenta milhões de dólares anualmente e uma das divisões que mais cresce são as microcervejarias. No Brasil começaram esses pequenos produtores começaram a surgir na década de 90. Em 2012 as cervejas especiais representavam 8\% do mercado nacional da bebida em 2012 e encerraram 2014 com uma participação de 11\%, segundo o Sindicato Nacional da Indústria da Cerveja, que aponta a existência de 300 microcervejarias no País. A projeção é de que essa cota suba para 20\% em 2020.
 
 
 \section{Fabricação de Cervejas}
@@ -73,8 +70,6 @@ envase.
 
 \subsection{Fermentação e Maturação}
 
-% // TODO: Melhorar Fermentação e Maturação
-
 \citeonline{Kunze} posiciona a fermentação como o processo mais importante da produção de cervejas, sendo as etapas
 antecedentes responsáveis para garantir as condições necessárias para que as leveduras possam converter os açúcares,
 extraídos do malte e quebrados em moléculas menores pelas enzimas, em álcool e gás carbônico. As leveduras consomem 
@@ -82,8 +77,7 @@ os açúcares para gerar energia e se reproduzirem, e nesse processo também ger
 pontuam \citeonline{YeastWhite}.
 
 Leveduras são organismos unicelulares membros do reino fungi. Na produção de cervejas são utilizadas principalmente 
-duas espécies: a \textit{Saccharomyces cerevisie} (em cervejas do tipo \textit{Ale}) e a \textit{Saccharomyces pastorianus} (em cervejas do tipo \textit{Lager}). Ao serem inoculadas ao mosto, as leveduras rapidamente absorvem o oxigênio dissolvido para revitalizar sua membrana celular e iniciar a absorção dos açúcares e nutrientes do mosto. 
-
+duas espécies: a \textit{Saccharomyces cerevisie} (em cervejas do tipo \textit{Ale}) e a \textit{Saccharomyces pastorianus} (em cervejas do tipo \textit{Lager}). Ao serem inoculadas ao mosto, as leveduras rapidamente absorvem o oxigênio dissolvido para revitalizar sua membrana celular e iniciar a absorção dos açúcares e nutrientes do mosto, descrevem \citeonline{YeastWhite}.
 A partir do açúcar absorvido, a levedura pode convertê-lo em energia por meio da respiração aeróbica que ocorre na presença de oxigênio, ou pela respiração anaeróbica que ocorre na ausência de oxigênio ou em solução com alta concentração de glicose (pelo chamado efeito de Crabtree). 
 Além da produção energia no formato de moléculas de adenosina trifosfato (ATP), a respiração anaeróbica também produz etanol e gás carbônico, por isso também é denominada de fermentação alcoólica; a equação \ref{eq:fermentacao} ilustra essa reação. A molécula de ATP provém energia para a síntese de proteínas e replicação de DNA, necessários para a multiplicação celular.
 
@@ -106,26 +100,26 @@ absorvidos pelas leveduras, maturando o produto durante três a dez dias.
 \end{enumerate}
 
 A variação nas durações das etapas é decorrente tanto da quantidade e saúde das leveduras inoculadas, quanto da temperatura 
-durante a fermentação. Tradicionalmente, cervejas do tipo \textit{Ale} são fermentadas a 20°C e cervejas do tipo 
-\textit{Lager} a 10°C. Temperaturas inferiores tornam o processo mais lento, e em casos extremos culminar na parada do processo, impedindo a fermentação completa ou que os subprodutos como o diacetil seja absorvido pelas leveduras. temperaturas superiores aceleram a atividade celular, tornando o processo mais rápido, mas também podendo fazer com que as leveduras se multipliquem demais e gerem uma quantidade de subprodutos alta que pode impactar negativamente na qualidade da bebida, gerando sabores indesejados denominados \textit{off-flavors}.
-
+durante a fermentação. De acordo com \citeonline{YeastWhite}, tradicionalmente, cervejas do tipo \textit{Ale} são fermentadas a 20°C e cervejas do tipo 
+\textit{Lager} a 10°C. Temperaturas inferiores tornam o processo mais lento, e em casos extremos culminar na parada do processo, impedindo a fermentação completa ou que os subprodutos como o diacetil seja absorvido pelas leveduras. temperaturas superiores aceleram a atividade celular, tornando o processo mais rápido, mas também podendo fazer com que as leveduras se multipliquem demais e gerem uma quantidade de subprodutos alta que pode impactar negativamente na qualidade da bebida, gerando sabores indesejados denominados \textit{off-flavors}. 
 Justamente por essa razão, o controle de temperatura durante a fermentação é essencial para a obtenção de um produto de 
 qualidade com resultados consistentes, principalmente nas primeiras 72 horas do processo, que representam o pico de multiplicação celular, geração de calor decorrente da atividade celular e produção de sub-produtos.
 
-Após a temperatura, a segunda variável mais importante para se monitorar é a densidade relativa do mosto 
-(\textit{specific gravity} em inglês) que indica o grau de evolução do processo. Como parte do gás carbônico produzido 
-na equação \ref{eq:fermentacao} é dissolvido e capturado pela atmosfera, a densidade do mosto diminui durante a fermentação à
-medida em que os açúcares vão sendo consumidos. A partir disso, é possível: identificar as etapas da fermentação pelo
-gráfico de evolução da densidade relativa ao longo do tempo; estimar a graduação alcoólica a partir dos valores inicial e 
-final da densidade relativa; e estipular o grau de atenuação, ou quanto dos açúcares foram consumidos pelas leveduras.
-
-Uma terceira variável relevante durante a fermentação é o pH, que sofre uma leve queda durante o processo, e pode ser 
+Após a temperatura, \citeonline{YeastWhite} colocam a densidade relativa e pH do mosto como segunda e terceira
+variáveis mais importantes para se monitorar urante a fermentação.
+A densidade relativa que indica o grau de evolução do processo. Como parte do gás carbônico produzido 
+na equação \ref{eq:fermentacao} é dissolvido e capturado pela atmosfera, a densidade do mosto diminui durante a 
+fermentação à medida em que os açúcares vão sendo consumidos. A partir disso, é possível: identificar as etapas da 
+fermentação pelo gráfico de evolução da densidade relativa ao longo do tempo; estimar a graduação alcoólica a partir dos 
+valores inicial e final da densidade relativa; e estipular o grau de atenuação, ou quanto dos açúcares foram consumidos 
+pelas leveduras.
+Enquanto o pH, que sofre uma leve queda durante o processo, pode ser 
 utilizado principalmente como uma amostra das condições iniciais da fermentação, com intuito de se obter reprodutividade do 
 processo, e também pode servir como uma variável de diagnóstico de problemas que podem ocorrer como não adaptação das 
 leveduras ao mosto e contaminação.
 
 Com caráter ilustrativo, é incluído gráfico com o perfil dessas e outras variáveis durante a fermentação de uma cerveja 
-do tipo \textit{Lager} (Figura \ref{fig:variaveis_fermentacao}). Na figura, \textit{specific gravity} se refere à
+do tipo \textit{Lager} (Figura \ref{fig:variaveis_fermentacao}), retirado de \citeonline{FermentationMunroe}. Na figura, \textit{specific gravity} se refere à
 densidade relativa do mosto, e \textit{cells in suspension} à quantidade de células de levedura em suspensão, vale notar que 
 ao final do processo, as leveduras floculam e decatam, por isso a queda.
 

@@ -112,26 +112,26 @@ Foi utilizada a biblioteca Simscape do software Matlab. Essa biblioteca contém 
     \label{fig:sim_sensor}
 \end{figure}
 
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{ |c|c| } 
-            \hline
-            Símbolo & Descrição \\
-            \hline
-            \(Q\) & Quantidade de Calor \\
-            \hline
-            \(k\) & Coeficiente de condutividade térmica do material \\
-            \hline
-            \(A\) & Área normal à transmissão de calor \\
-            \hline
-            \(D\) & Espessura do material \\
-            \hline
-            \(T_A, T_B\) & Temperaturas da camada A e B, respectivamente \\
-            \hline
-        \end{tabular}
-        \caption{\label{tab:legenda_blocos} Descrição dos símbolos de trocas de calor referentes às figuras \ref{fig:sim_conveccao} a \ref{fig:sim_conducao}.}
-    \end{center}
-\end{table}
+% \begin{table}[H]
+%     \begin{center}
+%         \begin{tabular}{ |c|c| } 
+%             \hline
+%             Símbolo & Descrição \\
+%             \hline
+%             \(Q\) & Quantidade de Calor \\
+%             \hline
+%             \(k\) & Coeficiente de condutividade térmica do material \\
+%             \hline
+%             \(A\) & Área normal à transmissão de calor \\
+%             \hline
+%             \(D\) & Espessura do material \\
+%             \hline
+%             \(T_A, T_B\) & Temperaturas da camada A e B, respectivamente \\
+%             \hline
+%         \end{tabular}
+%         \caption{\label{tab:legenda_blocos} Descrição dos símbolos de trocas de calor referentes às figuras \ref{fig:sim_conveccao} a \ref{fig:sim_conducao}.}
+%     \end{center}
+% \end{table}
 
 
 Com as devidas simplificações justificadas anteriormente, o sistema foi simulado com o circuito da figura \ref{fig:sim_circuito}. A seguir, cada seção de blocos do circuito é descrita em detalhes. A temperatura ambiente adotada na simulação é 25°C e a temperatura do líquido, 15°C.
@@ -276,7 +276,7 @@ Na qual:
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.60]{figuras/implementacao/hardware/pid.jpg}
-    \caption{Malha de controle PID.}
+    \captionsource{Malha de controle PID.}{http://microcontrolado.com/}
     \label{fig:pid}
 \end{figure}
 
@@ -294,7 +294,7 @@ A escolha dos parâmetros é feita a partir da observação da resposta do siste
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.45]{figuras/implementacao/hardware/resposta.png}
-    \caption{Responda do Sistema em malha aberta a sinal degrau.}
+    \captionsource{Responda do Sistema em malha aberta a sinal degrau.}{https://pt.wikipedia.org/}
     \label{fig:resposta_sistema}
 \end{figure}
 
