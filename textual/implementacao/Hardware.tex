@@ -107,7 +107,7 @@ A leitura do pH medido pelo sensor pelo microcontrolador segue o seguinte algori
 A medição de densidade foi implementada indiretamente através do sensor de pressão diferencial MP3V5010DP. Esse sensor será inserido no líquido fermentado através de dois tubos posicionados em uma distância fixa de 18 centímetros. A densidade será inferida através da fórmula: 
 
 \begin{equation}
-    \rho = \frac{\Delta P} {g \cdot \Delta h}
+    \rho = \dfrac{\Delta P}{g \cdot \Delta h}
 \end{equation}
 
 O chip Pmod DPG1 se comunica com o microcontrolador através da interface periférica serial (SPI), que é um sistema de comunicação que utiliza as portas: SCK: Serial Clock (output from master), MISO: Master In Slave Out (data output from slave) e SS: Slave Select.
@@ -115,7 +115,7 @@ O chip Pmod DPG1 se comunica com o microcontrolador através da interface perif�
 O sensor é alimentado com 3.3 V e é utilizado um conversor de nível lógico bidirecional para converter o sinal digital de 5V para a tensão do sensor. A biblioteca SPI (https://github.com/PaulStoffregen/SPI) foi utilizada para realizar essa comunicação e leitura. O valor recebido pelo microcontrolador é convertido através da fórmula fornecida no datasheet do chip:
 
 \begin{equation}
-    \Delta P = \frac{\frac{value/{4096} - 0.08}{0.08} 
+    \Delta P = \dfrac{\dfrac{value}{4096} - 0.08}{0.08} 
 \end{equation}
 
 \subsection{Conexão e Comunicação do Microcontrolador}
