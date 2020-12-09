@@ -4,14 +4,14 @@
 
 O primeiro passo para a implementação do controle de temperatura da fermentação é a modelagem térmica do processo. Nota-se que essa modelagem é bastante complexa pois envolve diversos coeficientes térmicos desconhecidos, devido a composição heterogênea do Mosto com Leveduras. 
 
-O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador será embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente.
+O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador é embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente.
 
 A fermentação ocorre na maior  parte das receitas em temperaturas de 14°C até 20°C,  temperaturas muitas vezes inferiores à temperatura do ambiente. Sendo assim, existe a necessidade de criar um sistema que troque calor com o mosto e leveduras mantendo um gradiente de temperatura entre o fermentador e o ambiente constante conforme configuração do usuário. 
 
 Para isso acontecer durante o processo, o calor retirado pela refrigeração deve ser o mesmo que o gerado pela convecção com o ambiente e pelo próprio processo de fermentação, que é exotérmico. 
 
 
-É importante destacar que o dispositivo irá ter duas funções: a primeira será manter a temperatura do líquido fermentado; a segunda será levar o líquido até determinada temperatura. Ambas as funcionalidades envolvem a capacidade do dispositivo de retirar ou fornecer calor do sistema de forma eficiente e constante. 
+É importante destacar que o dispositivo irá ter duas funções: a primeira é manter a temperatura do líquido fermentado; a segunda é levar o líquido até determinada temperatura. Ambas as funcionalidades envolvem a capacidade do dispositivo de retirar ou fornecer calor do sistema de forma eficiente e constante. 
 
 
 \subsection{Transferência de Calor entre Ar e Fermentador}
@@ -71,7 +71,7 @@ A Simulação térmica do sistema possui três objetivos:
     \item Simular um controle PID utilizando uma fonte de calor variável, no caso do sistema real, uma pastilha de Peltier para a sintonização inicial do sistema.
 \end{enumerate}
 
-Com esses testes será possível entender se a utilização de pastilhas de Peltier será suficiente para o controle de temperatura.
+Com esses testes é possível entender se a utilização de pastilhas de Peltier é suficiente para o controle de temperatura.
 
 
 Foi utilizada a biblioteca Simscape do software Matlab. Essa biblioteca contém blocos que simulam elementos térmicos e funcionam de maneira análoga a um circuito elétrico. No caso, a diferença de temperatura seria equivalente à diferença de potencial elétrico e o calor que circula no sistema seria equivalente a corrente elétrica. As figuras \ref{fig:sim_fonte_calor} a \ref{fig:sim_sensor} representam blocos utilizados.
@@ -144,7 +144,7 @@ Com as devidas simplificações justificadas anteriormente, o sistema foi simula
 \end{figure}
 
 
-Para a simulação, foi considerado um fermentador cilíndrico com 37 cm de altura e 26 cm de raio. Ele tem paredes de polipropileno com coeficiente térmico de \(0,25 W / m \cdot K\)  e 0,1 cm de espessura. Esse fermentador será encoberto por uma camada de isolante de espuma de poliestireno com coeficiente térmico de  \(0,03 W / m \cdot K\) e 0,2 cm de espessura. O líquido será considerado como água, visando simplificar os cálculos. 
+Para a simulação, foi considerado um fermentador cilíndrico com 37 cm de altura e 26 cm de raio. Ele tem paredes de polipropileno com coeficiente térmico de \(0,25 W / m \cdot K\)  e 0,1 cm de espessura. Esse fermentador é encoberto por uma camada de isolante de espuma de poliestireno com coeficiente térmico de  \(0,03 W / m \cdot K\) e 0,2 cm de espessura. O líquido é considerado como água, visando simplificar os cálculos. 
 
 
 O conjunto de blocos da figura \ref{fig:transcal_amb} representa a transferência de calor entre o ar e a camada isolante que circunda o fermentador. Foram consideradas duas formas de transferência, por convecção e radiação. A área de contato adotada foi \(2 \pi \cdot 0,37 ]cdot 0,263 m^2\), o coeficiente de radiação, \( 5,667 e^{-8} \cdot 0,7 W / m^2 \cdot K^4 \), e o coeficiente de convecção, \(25 W /m^2 \cdot K\) (ar).
@@ -197,7 +197,7 @@ Executando a simulação, a curva de calor resultante (figura \ref{fig:curva_cal
 \end{figure}
 
 
-Uma segunda simulação foi realizada para determinar o tempo necessário para levar temperatura do sistema do  equilíbrio térmico até uma novo valor. Para isso é ligada uma massa térmica, com o calor específico igual à água de \( 4184 J/K \cdot Kg \), ocupando de 15L do fermentador, e com massa de aproximadamente 15 Kg. O atuador será uma fonte de calor variável, que irá retirar do sistema uma quantidade de calor constante de 57 W. Simulando para intervalo de tempo de 20 horas, foram obtidas as curvas de temperatura (figura \ref{fig:curva_temp}) e quantidade de calor (figura \ref{fig:curva_q}).
+Uma segunda simulação foi realizada para determinar o tempo necessário para levar temperatura do sistema do  equilíbrio térmico até uma novo valor. Para isso é ligada uma massa térmica, com o calor específico igual à água de \( 4184 J/K \cdot Kg \), ocupando de 15L do fermentador, e com massa de aproximadamente 15 Kg. O atuador é uma fonte de calor variável, que irá retirar do sistema uma quantidade de calor constante de 57 W. Simulando para intervalo de tempo de 20 horas, foram obtidas as curvas de temperatura (figura \ref{fig:curva_temp}) e quantidade de calor (figura \ref{fig:curva_q}).
 
 
 \begin{figure}[H]
@@ -214,15 +214,43 @@ Observando o sistema, conclui-se que o tempo necessário para mover o sistema do
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.60]{figuras/projeto/controle/curva_temp.png}
-    \captionsource{Curva de temperatura em Kelvin por tempo em dezenas de milhares de segundos, obtida da simulação do circuito térmico da figura.}{Autores}
+    \captionsource{Curva de temperatura em Kelvin por tempo em dezenas de milhares de segundos, obtida da simulação do circuito térmico da figura \ref{fig:sim_circuito}.}{Autores}
     \label{fig:curva_temp}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.60]{figuras/projeto/controle/curva_q.png}
-    \captionsource{Curva de quantidade de calor em Watts por tempo em dezenas de milhares de segundos, obtida da simulação do circuito térmico da figura.}{Autores}
+    \captionsource{Curva de quantidade de calor em Watts por tempo em dezenas de milhares de segundos, obtida da simulação do circuito térmico da figura \ref{fig:sim_circuito}.}{Autores}
     \label{fig:curva_q}
+\end{figure}
+
+\subsection{Modelo para Sintonização do Controlador}
+
+Foi construído o modelo da figura \ref{fig:modelo_circuito_sinc} no Software Matlab para auxiliar na sintonização do controlador. Foram utilizados o fermentador anteriormente modelado, uma fonte de calor variável para representar o nosso atuador, um bloco PI (inicialmente considerando o ganho derivado como nulo) e uma referência de temperatura. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.37]{figuras/projeto/controle/modelo_circuito_sinc.jpeg}
+    \captionsource{Circuito utilizado para sintonização do controlador.}{Autores}
+    \label{fig:modelo_circuito_sinc}
+\end{figure}
+
+Com o auxílio do sintonizador do Matlab, chegou-se a um valor de \(K_p\) = 6,05 e de \(K_i\) = 0,0010245; onde \(K_i = K_p/T_i\). Esse valor se mostrou capaz de gerar uma resposta rápida e pouco oscilante, mas melhorias empíricas podem ser obtidas no futuro.
+A figura \ref{fig:curva_temp_sinc} ilustra a curva de resposta com uma referência de 290K de temperatura e uma temperatura ambiente de 300K, e a figura \ref{fig:curva_calor_sinc}, o calor fornecido pelo atuador ao longo do tempo. Conclui-se que o sistema consegue atingir a referência, porém possui resposta inicial demorada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.60]{figuras/projeto/controle/curva_temp_sinc.png}
+    \captionsource{Curva de temperatura em Kelvin por tempo em dezenas de milhares de segundos, obtida da simulação de sintonização do controlador.}{Autores}
+    \label{fig:curva_temp_sinc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.60]{figuras/projeto/controle/curva_calor_sinc.png}
+    \captionsource{Curva de calor em Watts fornecido pelo atuador por tempo em dezenas de milhares de segundos, obtida da simulação de sintonização do controlador.}{Autores}
+    \label{fig:curva_calor_sinc}
 \end{figure}
 
 \subsection{Dispositivo para Troca de Calor}
@@ -237,7 +265,7 @@ Um dos maiores desafios do projeto é criar um sistema que consiga trocar calor 
 
 \subsection{Controle de Temperatura}
 
-Um controlador de malha fechada proporcional interativo derivativo (PID) será utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
+Um controlador de malha fechada proporcional interativo derivativo (PID) é utilizado para controlar a temperatura do fermentador. Esse método é amplamente utilizado na indústria, possuindo boa precisão e confiabilidade, além de ser facilmente sintonizado. Inicialmente são definidos parâmetros analógicos e depois é criado o controle digital.
 
 \subsubsection{Controlador PID}
 
@@ -318,5 +346,5 @@ A escolha dos parâmetros é feita a partir da observação da resposta do siste
 
 \subsubsection{Anti Wind-up}
 
-Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida será congelar a ação do controlador em caso de saturação.  
+Nesta aplicação, devido a limitações do atuador, é esperado uma saturação na saída. No caso onde o sistema não consegue chegar no setpoint, teremos uma situação chamada de wind-up, na qual, a sua resposta integral irá crescer de forma indefinida. Para evitar problemas no controlador, é necessário a implementação de um sistema anti wind-up, no caso, a ação escolhida é congelar a ação do controlador em caso de saturação.  
 
