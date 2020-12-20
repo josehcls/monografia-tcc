@@ -6,7 +6,7 @@ O primeiro passo para a implementação do controle de temperatura da fermentaç
 
 O objetivo do sistema é controlar a temperatura do líquido fermentado (solução de mosto e leveduras). O líquido estará dentro de um fermentador, sem entrada de ar dado que a fermentação é anaeróbica e o ar interfere na qualidade do experimento. Para expulsar o $CO^2$ gerado pela fermentação e não permitir a entrada de $O^2$ o fermentador utiliza um Air-Lock, dispositivo que funciona como válvula só permitindo a direção única desse fluxo. O fermentador é embalado em uma manta térmica, com a intenção de evitar a troca térmica com o ambiente.
 
-A fermentação ocorre na maior  parte das receitas em temperaturas de 14°C até 20°C,  temperaturas muitas vezes inferiores à temperatura do ambiente. Sendo assim, existe a necessidade de criar um sistema que troque calor com o mosto e leveduras mantendo um gradiente de temperatura entre o fermentador e o ambiente constante conforme configuração do usuário. 
+A fermentação ocorre na maior parte das receitas para cervejas do tipo Ale em temperaturas entre 14°C e 20°C, que são, muitas vezes, inferiores à temperatura do ambiente. Sendo assim, existe a necessidade de criar um sistema que troque calor com o mosto e leveduras mantendo um gradiente de temperatura entre o fermentador e o ambiente constante conforme configuração do usuário. 
 
 Para isso acontecer durante o processo, o calor retirado pela refrigeração deve ser o mesmo que o gerado pela convecção com o ambiente e pelo próprio processo de fermentação, que é exotérmico. 
 
@@ -50,7 +50,7 @@ Algumas hipóteses foram adotadas visando simplificar o problema:
 \end{enumerate}
 
 
-As hipóteses 1, 2, 3  podem ser adotadas devido ao horizonte de tempo da fermentação, no qual é necessário manter a mesma temperatura durante dias. As hipóteses 4, 5 e 6 foram adotadas com a intenção de simplificar o problema. A figura \ref{fig:fermentador_controle} exemplifica esse problema e a figura \ref{fig:fermentador_circuito} demonstra o circuito elétrico equivalente, cuja legenda se encontra na tabela \ref{tab:variaveis_circuito}.
+As hipóteses 1, 2, 3  podem ser adotadas devido ao horizonte de tempo da fermentação, no qual é necessário manter a mesma temperatura durante dias. As hipóteses 4, 5 e 6 foram adotadas com a intenção de simplificar o problema. A figura \ref{fig:fermentador_controle} exemplifica o desenho desse problema.
 
 \begin{figure}[h]
     \centering
