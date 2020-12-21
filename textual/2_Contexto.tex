@@ -106,7 +106,7 @@ Justamente por essa razão, o controle de temperatura durante a fermentação é
 qualidade com resultados consistentes, principalmente nas primeiras 72 horas do processo, que representam o pico de multiplicação celular, geração de calor decorrente da atividade celular e produção de sub-produtos.
 
 Após a temperatura, \citeonline{YeastWhite} colocam a densidade relativa e pH do mosto como segunda e terceira
-variáveis mais importantes para se monitorar urante a fermentação.
+variáveis mais importantes para se monitorar durante a fermentação.
 A densidade relativa que indica o grau de evolução do processo. Como parte do gás carbônico produzido 
 na equação \ref{eq:fermentacao} é dissolvido e capturado pela atmosfera, a densidade do mosto diminui durante a 
 fermentação à medida em que os açúcares vão sendo consumidos. A partir disso, é possível: identificar as etapas da 
@@ -130,8 +130,66 @@ ao final do processo, as leveduras floculam e decatam, por isso a queda.
     \label{fig:variaveis_fermentacao}
 \end{figure}
 
-% \section{Estado da Arte de Sistemas de Produção Artesanal}
+\section{Análise de Soluções Existentes}
 
-% \subsection{Análise de Soluções Existentes}
 
-% % // TODO: Escrever Estado da Arte e Análise de Soluções Existentes
+Em produções de grande escala, \citeonline{YeastWhite} afirmam que a maior parte das cervejarias utiliza grandes fermentadores cônicos, que possuem um sistema de resfriamento em seu revestimento, com fluido circulante, para controlar a temperatura durante a fermentação. Para pequenas produções, há uma grande variedade de métodos e equipamentos disponíveis para realizar esse controle, desde sistemas sofisticados que replicam os fermentadores industriais, até métodos manuais.
+
+
+Empresas como a Grainfather, Ss Brewtech e Birchmann oferecem sistemas de fermentação de primeira linha, com controle de temperatura utilizando a circulação de líquido refrigerante. São modelos relativamente caros, que se assemelham ao equipamento profissional de grande escala. A figura \ref{fig:ssbrewtech} esquematiza um desses produtos, constituído de um compressor para resfriamento do líquido que circula no fermentador por uma serpentina e uma resistência para aquecimento acoplada no fermentador.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{figuras/contexto/glycol_ftss2_1000x.jpg}
+    \captionsource{Esquema do equipamento de controle da fermentação FTSs² da Ss Brewtech.}{https://www.ssbrewtech.com/}
+    \label{fig:ssbrewtech}
+\end{figure}
+
+
+Na outra extremidade do espectro de soluções, produtores \textit{hobbyistas} que estejam preocupados com o controle de temperatura têm desenvolvido algumas técnicas e equipamentos simples para controle. Um exemplo de técnica comum, é submergir parcialmente o fermentador em um reservatório com água e controlar a temperatura pela adição de gelo nesse reservatório, é um método de baixo custo, mas que exige acompanhamento e esforço constante para se obter um resultado mediano. 
+
+
+Buscando o controle automatizado, um projeto comum na comunidade de cervejeiros caseiros, é a utilização de geladeiras ou freezers, adaptando-se seu termostato para definição de uma temperatura alvo específica. Esse último método requer um investimento maior na aquisição do refrigerador, mas atinge consegue atingir um bom resultado.
+Outra abordagem encontrada é a montagem de um sistema utilizando bomba e serpentina para circulação de um líquido refrigerante. Uma alternativa de menor custo e mais simples em relação ao condensador utilizado na solução já citada, é resfriar o líquido de saída da serpentina em um recipiente com isolamento térmico contendo gelo.
+
+
+Entre as soluções profissionais e as soluções \textit{hobbyistas} surge uma série de produtos com a finalidade de entregar uma solução pronta e com um custo menor em relação a um sistema completo. Esses produtos tendem a ser comercializados como acessórios que podem ser acoplados a fermentadores de diferentes tamanhos e modelos, sendo mais adaptáveis às necessidades do usuário. As empresas citadas que oferecem sistemas completos também possuem esses \textit{kits} para montagem, além de diversas outras empresas focadas em dispositivos mais simples.
+
+
+Uma solução bastante interessante é o produto Immersion Pro comercializado pela Brew Jacket (figura \ref{fig:brewjacket}). Ela consiste em controlador que utiliza uma pastilha de Peltier para controle da temperatura (seja resfriamento ou aquecimento) do mosto em fermentação, através de uma haste para troca de calor que fica submersa. É um produto versátil o suficiente para ser instalado nos principais modelos de fermentador e apresenta a capacidade de manter a temperatura com diferença de até 20°C da temperatura ambiente desde que aplicado um isolamento térmico ao fermentador.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{figuras/contexto/brewjacket.jpg}
+    \captionsource{Produto Immersion Pro desenvolvido pela Brew Jacket.}{https://brewjacket.com/}
+    \label{fig:brewjacket}
+\end{figure}
+
+Além das soluções discutidas para controle da temperatura, há uma linha de produtos especializados no monitoramento da temperatura e densidade durante a fermentação e disponibilização online das informações. Dentre as soluções disponíveis, destacam-se pela abordagem na medição da densidade, os produtos Plaato, Beer Bug e Tilt Hydrometer.
+
+A Plaato (figura \ref{fig:plaato}) conseguiu desenvolver uma técnica singular de inferir a densidade do mosto pelo volume de \(CO_2\) que é expelido durante a fermentação. O produto na forma de um \textit{airlock} é conectado ao fermentador vedado e envia os dados de densidade e temperatura coletados via conexão \textit{Wi-Fi}, que podem ser acompanhados em computadores ou dispositivos móveis. Também com disponibilização dos dados de temperatura e densidade online, o Tilt Hydrometer (figura \ref{fig:tilt}) é um pequeno dispositivo cilíndrico que fica imerso no fermentador e infere a densidade pelo ângulo de inclinação de flutuação, enquanto que o Beer Bug (figura \ref{fig:beerbug}) é instalado como um \textit{airlock} e infere a densidade medindo a força de empuxo sofrida por uma carga submersa no mosto e conectado ao dispositivo por um fio.
+
+Analisando as soluções existente, este projeto se posiciona com o objetivo de desenvolver um protótipo que reúna o controle de temperatura com o monitoramento online das variáveis relevantes. Além disso, que possa ser desenvolvido em um produto razoavelmente versátil para ser instalado em fermentadores comuns.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.25]{figuras/contexto/plaato.jpg}
+    \captionsource{Solução Plaato.}{https://plaato.io/}
+    \label{fig:plaato}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{figuras/contexto/tilt.png}
+    \captionsource{Solução Tilt Hydrometer.}{https://tilthydrometer.com/}
+    \label{fig:tilt}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{figuras/contexto/beerbug.png}
+    \captionsource{Solução Beer Bug.}{https://straighttothepint.com/}
+    \label{fig:beerbug}
+\end{figure}
+
